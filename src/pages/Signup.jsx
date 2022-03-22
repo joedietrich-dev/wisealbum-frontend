@@ -1,5 +1,6 @@
 import { Form, Formik } from "formik";
 import TextInput from "../components/TextInput";
+import { signupValidation } from "../helpers/validationSchemas/signupValidation";
 
 function Signup() {
   return (
@@ -12,6 +13,7 @@ function Signup() {
           password: "",
           password_confirmation: "",
         }}
+        validationSchema={signupValidation}
         onSubmit={(values) => {
           // same shape as initial values
           console.log(values);
