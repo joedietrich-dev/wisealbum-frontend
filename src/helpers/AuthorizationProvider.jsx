@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { post } from "./fetchers/post";
 
 const authContext = createContext();
@@ -15,6 +15,8 @@ function AuthorizationProvider({ children }) {
     organization_id: undefined,
   });
   const [loading, setLoading] = useState(true);
+
+  const token = localStorage.getItem("token");
 
   const handleLogin = ({ email, password }) => {
     post(`${process.env.REACT_APP_QUERY_DOMAIN}/login`, {
@@ -44,7 +46,74 @@ function AuthorizationProvider({ children }) {
       .catch((err) => console.error(err));
   };
 
-  return <authContext.Provider value={{ user, loading, handleLogin }}>{children}</authContext.Provider>;
+  const handleLogout = () => {
+    if (token) {
+      fetch(`${process.env.REACT_APP_QUERY_DOMAIN}/logout`, {
+        method: "DELETE",
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        },
+      }).then((res) => {
+        if (res.ok) {
+          setUser({
+            id: null,
+            full_name: "",
+            role_id: undefined,
+            organization_id: undefined,
+          });
+          localStorage.removeItem("token");
+        }
+      });
+    }
+  };
+
+  const handlePersistUser = () => {
+    fetch(`${process.env.REACT_APP_QUERY_DOMAIN}/current_user`, {
+      method: "GET",
+      headers: {
+        Authorization: token,
+      },
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          if (res.status === 401) {
+            localStorage.removeItem("token");
+          }
+          return res.text().then((text) => {
+            throw new Error(text);
+          });
+        }
+      })
+      .then((json) => {
+        console.log(json);
+        const { id, full_name, role_id, organization_id } = json;
+        setUser({
+          id,
+          full_name,
+          role_id,
+          organization_id,
+        });
+        setLoading(false);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  useEffect(() => {
+    if (token && !user.id) {
+      handlePersistUser();
+    } else if (!token) {
+      setUser({
+        id: null,
+        full_name: "",
+        role_id: undefined,
+        organization_id: undefined,
+      });
+    }
+  }, [token]);
+
+  return <authContext.Provider value={{ user, loading, handleLogin, handleLogout }}>{children}</authContext.Provider>;
 }
 
 export { AuthorizationProvider };

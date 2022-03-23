@@ -22,7 +22,6 @@ function Login() {
           </Form>
         )}
       </Formik>
-      <div>{user.full_name}</div>
     </div>
   );
 }

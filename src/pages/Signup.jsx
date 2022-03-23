@@ -15,8 +15,6 @@ function Signup() {
         }}
         validationSchema={signupValidation}
         onSubmit={(values) => {
-          // same shape as initial values
-          console.log(values);
           fetch(`${process.env.REACT_APP_QUERY_DOMAIN}/signup`, {
             method: "POST",
             headers: {
@@ -30,7 +28,6 @@ function Signup() {
           })
             .then((res) => {
               if (res.ok) {
-                console.log(res.headers.get("Authorization"));
                 localStorage.setItem("token", res.headers.get("Authorization"));
                 return res.json();
               } else {
