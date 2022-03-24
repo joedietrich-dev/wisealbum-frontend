@@ -1,9 +1,17 @@
 import { Form, Formik } from "formik";
+import { useNavigate } from "react-router-dom";
 import TextInput from "../components/TextInput";
 import { useAuth } from "../helpers/AuthorizationProvider";
 
 function Login() {
-  const { user, handleLogin } = useAuth();
+  const { handleLogin } = useAuth();
+  const navigate = useNavigate();
+
+  const handleSubmit = (event) => {
+    handleLogin(event);
+    navigate("/dashboard");
+  };
+
   return (
     <div>
       <h1>Login</h1>
@@ -12,7 +20,7 @@ function Login() {
           email: "",
           password: "",
         }}
-        onSubmit={handleLogin}
+        onSubmit={handleSubmit}
       >
         {() => (
           <Form>

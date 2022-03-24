@@ -1,6 +1,8 @@
 import { Route, Routes } from "react-router-dom";
-import { AuthorizationProvider, useAuth } from "./helpers/AuthorizationProvider";
+import { AuthorizationProvider } from "./helpers/AuthorizationProvider";
 import Layout from "./layouts/Layout";
+import OrganizationCreate from "./pages/OrganizationCreate";
+import Dashboard from "./pages/Dashboard";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Logout from "./pages/Logout";
@@ -18,6 +20,8 @@ function App() {
             <Route path="/signup" element={<Signup />} />
             <Route path="/logout" element={<Logout />} />
             <Route path="/status" element={<Status />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/organization/create" element={<OrganizationCreate />} />
           </Routes>
         </Layout>
       </AuthorizationProvider>
