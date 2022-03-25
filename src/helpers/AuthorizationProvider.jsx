@@ -20,7 +20,7 @@ function AuthorizationProvider({ children }) {
   const token = localStorage.getItem("token");
 
   const handleLogin = (data, callback = (f) => f) => {
-    post(`${process.env.REACT_APP_QUERY_DOMAIN}/login`, {
+    return post(`${process.env.REACT_APP_QUERY_DOMAIN}/login`, {
       user: {
         email: data.email,
         password: data.password,

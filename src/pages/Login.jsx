@@ -1,5 +1,5 @@
 import { Form, Formik } from "formik";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import TextInput from "../components/TextInput";
 import { useAuth } from "../helpers/AuthorizationProvider";
 
@@ -7,9 +7,11 @@ function Login() {
   const { handleLogin } = useAuth();
   const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
-    handleLogin(event);
-    navigate("/dashboard");
+  const handleSubmit = (data) => {
+    handleLogin(data, () => {
+      navigate("/dashboard");
+    });
+    navigate();
   };
 
   return (
