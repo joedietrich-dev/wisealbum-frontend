@@ -12,7 +12,7 @@ import { ROLE } from "../helpers/roles";
 
 function OrganizationCreate() {
   const [org, setOrg] = useState(null);
-  const { user } = useAuth();
+  const { user, setUser } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -31,7 +31,9 @@ function OrganizationCreate() {
           throw new Error(res.text().then((err) => err));
         }
       })
-      .then((json) => {});
+      .then((json) => {
+        setUser({ ...user, organization_id: json.id });
+      });
   };
 
   return (
