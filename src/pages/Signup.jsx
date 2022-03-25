@@ -1,5 +1,6 @@
 import { Form, Formik } from "formik";
 import TextInput from "../components/TextInput";
+import { post } from "../helpers/fetchers/post";
 import { signupValidation } from "../helpers/validationSchemas/signupValidation";
 
 function Signup() {
@@ -15,16 +16,10 @@ function Signup() {
         }}
         validationSchema={signupValidation}
         onSubmit={(values) => {
-          fetch(`${process.env.REACT_APP_QUERY_DOMAIN}/signup`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
+          post(`${process.env.REACT_APP_QUERY_DOMAIN}/signup`, {
+            user: {
+              ...values,
             },
-            body: JSON.stringify({
-              user: {
-                ...values,
-              },
-            }),
           })
             .then((res) => {
               if (res.ok) {

@@ -13,16 +13,17 @@ function AuthorizationProvider({ children }) {
     full_name: "",
     role_id: undefined,
     organization_id: undefined,
+    token: undefined,
   });
   const [loading, setLoading] = useState(true);
 
   const token = localStorage.getItem("token");
 
-  const handleLogin = ({ email, password }) => {
+  const handleLogin = (data, callback = (f) => f) => {
     post(`${process.env.REACT_APP_QUERY_DOMAIN}/login`, {
       user: {
-        email,
-        password,
+        email: data.email,
+        password: data.password,
       },
     })
       .then((res) => {
@@ -40,8 +41,10 @@ function AuthorizationProvider({ children }) {
           full_name,
           role_id,
           organization_id,
+          token: localStorage.getItem("token"),
         });
         setLoading(false);
+        callback();
       })
       .catch((err) => console.error(err));
   };
@@ -60,6 +63,7 @@ function AuthorizationProvider({ children }) {
             full_name: "",
             role_id: undefined,
             organization_id: undefined,
+            token: undefined,
           });
           localStorage.removeItem("token");
         }
@@ -94,6 +98,7 @@ function AuthorizationProvider({ children }) {
           full_name,
           role_id,
           organization_id,
+          token,
         });
         setLoading(false);
       })
@@ -109,11 +114,12 @@ function AuthorizationProvider({ children }) {
         full_name: "",
         role_id: undefined,
         organization_id: undefined,
+        token: undefined,
       });
     }
   }, [token]);
 
-  return <authContext.Provider value={{ user, loading, handleLogin, handleLogout }}>{children}</authContext.Provider>;
+  return <authContext.Provider value={{ user, loading, setUser, handleLogin, handleLogout }}>{children}</authContext.Provider>;
 }
 
 export { AuthorizationProvider };

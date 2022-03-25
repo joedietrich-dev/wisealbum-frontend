@@ -10,9 +10,17 @@ function Layout({ children }) {
       <NavBar>
         <NavLink to="/">Home</NavLink>
         <NavLink to="/status">Status</NavLink>
-        {user.id ? null : <NavLink to="/login">Login</NavLink>}
-        {user.id ? null : <NavLink to="/signup">Signup</NavLink>}
-        {user.id ? <NavLink to="/logout">Logout</NavLink> : null}
+        {user.id ? (
+          <>
+            <NavLink to="/dashboard">Dashboard</NavLink>
+            <NavLink to="/logout">Logout</NavLink>
+          </>
+        ) : (
+          <>
+            <NavLink to="/login">Login</NavLink>
+            <NavLink to="/signup">Signup</NavLink>
+          </>
+        )}
       </NavBar>
       {children}
       <Footer>Footer</Footer>
