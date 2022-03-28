@@ -5,7 +5,7 @@ import TextInput from "../components/TextInput";
 import Title from "../components/Title";
 import Subtitle from "../components/Subtitle";
 import { useAuth } from "../helpers/AuthorizationProvider";
-import { post } from "../helpers/fetchers/post";
+import { authorizedPost } from "../helpers/fetchers/post";
 import { createOrganizationValidation } from "../helpers/validationSchemas/createOrganizationValidation";
 import { useNavigate } from "react-router-dom";
 import { ROLE } from "../helpers/roles";
@@ -23,7 +23,7 @@ function OrganizationCreate() {
   }, [user, navigate]);
 
   const handleSubmit = (values) => {
-    post(`${process.env.REACT_APP_QUERY_DOMAIN}/organizations`, { organization: { ...values } }, user.token)
+    authorizedPost(`${process.env.REACT_APP_QUERY_DOMAIN}/organizations`, { organization: { ...values } })
       .then((res) => {
         if (res.ok) {
           return res.json();

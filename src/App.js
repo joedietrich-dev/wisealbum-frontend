@@ -8,6 +8,7 @@ import Login from "./pages/Login";
 import Logout from "./pages/Logout";
 import Signup from "./pages/Signup";
 import Status from "./pages/Status";
+import OrganizationEdit from "./pages/OrganizationEdit";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
             <Route path="/status" element={<Status />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/organization/create" element={<OrganizationCreate />} />
+            <Route path="/organization/:organizationId/edit" element={<OrganizationEdit />} />
           </Routes>
         </Layout>
       </AuthorizationProvider>

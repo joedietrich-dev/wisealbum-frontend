@@ -1,15 +1,21 @@
-export const post = (url, content, token = null) => {
-  const options = {
+import { getToken } from "../tokenService";
+
+const setOptions = (content) => {
+  return {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(content),
   };
+};
 
-  if (token) {
-    options.headers["Authorization"] = token;
-  }
-
+export const post = (url, content) => {
+  const options = setOptions(content);
   return fetch(url, options);
+};
+
+export const authorizedPost = (url, content) => {
+  const options = setOptions(content);
+  return fetch(url, { ...options, Authorization: getToken() });
 };
