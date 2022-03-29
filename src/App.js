@@ -9,6 +9,7 @@ import Logout from "./pages/Logout";
 import Signup from "./pages/Signup";
 import Status from "./pages/Status";
 import OrganizationEdit from "./pages/OrganizationEdit";
+import Forbidden from "./pages/Forbidden";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/organization/create" element={<OrganizationCreate />} />
             <Route path="/organization/:organizationId/edit" element={<OrganizationEdit />} />
+            <Route path="/forbidden" element={<Forbidden />} />
           </Routes>
         </Layout>
       </AuthorizationProvider>
