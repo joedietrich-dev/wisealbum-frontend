@@ -3,32 +3,87 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../helpers/AuthorizationProvider";
 import { authorizedGet } from "../helpers/fetchers/get";
 import Title from "../components/Title";
+import SectionTitle from "../components/SectionTitle";
+
+import { ROLE } from "../helpers/roles";
+import Subtitle from "../components/Subtitle";
+import PageCard from "../components/PageCard";
+import { Form, Formik } from "formik";
+import TextInput from "../components/TextInput";
+import { editOrganizationValidation } from "../helpers/validationSchemas/editOrganizationValidation";
+import Button from "../components/Button";
+import { authorizedPatch } from "../helpers/fetchers/patch";
+import Table from "../components/Table";
 
 function OrganizationEdit() {
   const { organizationId } = useParams();
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
   const navigate = useNavigate();
+  const [isOrgLoading, setIsOrgLoading] = useState(true);
   const [org, setOrg] = useState();
 
   useEffect(() => {
-    authorizedGet(`/organizations/${organizationId}`)
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          throw new Error(res);
-        }
-      })
+    if (!loading) {
+      if (ROLE.isSuperAdmin(user) || (ROLE.isOrgOwner(user) && user.organization_id === parseInt(organizationId, 10))) {
+        authorizedGet(`/organizations/${organizationId}`)
+          .then((json) => {
+            console.log(json);
+            setOrg(json);
+            setIsOrgLoading(false);
+          })
+          .catch((err) => console.error(err));
+      } else {
+        navigate("/forbidden");
+      }
+    }
+  }, [user, loading, organizationId, navigate]);
+
+  const handleSubmit = (values) => {
+    authorizedPatch(`/organizations/${organizationId}`, values)
       .then((json) => {
-        console.log(json);
         setOrg(json);
       })
       .catch((err) => console.error(err));
-  }, [organizationId]);
+  };
+
   return (
-    <div>
-      <Title>{org?.name}</Title>
-    </div>
+    <PageCard>
+      {loading || isOrgLoading ? null : (
+        <>
+          <Title>Edit {org?.name}</Title>
+          <Subtitle>Add your teammates and edit your organization details here.</Subtitle>
+          <Formik
+            initialValues={{
+              name: org?.name,
+            }}
+            onSubmit={handleSubmit}
+            validationSchema={editOrganizationValidation}
+          >
+            <Form>
+              <TextInput label="Organization Name" name="name" />
+              <Button type="submit">Save</Button>
+            </Form>
+          </Formik>
+          <SectionTitle>Collaborators</SectionTitle>
+          <Subtitle>Invite Teammates</Subtitle>
+          <p>TODO: Invitation Form</p>
+          <Table>
+            <tr>
+              <th>Full Name</th>
+              <th>Email</th>
+              <th>Role</th>
+            </tr>
+            {org.users.map((user) => (
+              <tr>
+                <td>{user.full_name}</td>
+                <td>{user.email}</td>
+                <td>{user.role_id}</td>
+              </tr>
+            ))}
+          </Table>
+        </>
+      )}
+    </PageCard>
   );
 }
 

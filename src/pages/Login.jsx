@@ -1,5 +1,5 @@
 import { Form, Formik } from "formik";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import TextInput from "../components/TextInput";
 import { useAuth } from "../helpers/AuthorizationProvider";
 
@@ -11,7 +11,6 @@ function Login() {
     handleLogin(data, () => {
       navigate("/dashboard");
     });
-    navigate();
   };
 
   return (

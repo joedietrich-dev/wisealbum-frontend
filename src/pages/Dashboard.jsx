@@ -1,6 +1,9 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../helpers/AuthorizationProvider";
+import PageCard from "../components/PageCard";
+import Title from "../components/Title";
+import Subtitle from "../components/Subtitle";
 
 function Dashboard() {
   const { user } = useAuth();
@@ -12,7 +15,12 @@ function Dashboard() {
       navigate("/organization/create");
     }
   }, [user, navigate]);
-  return <div>Dashboard</div>;
+  return (
+    <PageCard>
+      <Title>Dashboard</Title>
+      <Subtitle>See the dashboard.</Subtitle>
+    </PageCard>
+  );
 }
 
 export default Dashboard;
