@@ -12,6 +12,7 @@ import Forbidden from "./pages/Forbidden";
 import Profile from "./pages/Profile";
 import UserDashboard from "./pages/UserDashboard";
 import AdminCompanyDashboard from "./pages/AdminCompanyDashboard";
+import ListAlbums from "./pages/ListAlbums";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
             <Route path="/organization/create" element={<OrganizationCreate />} />
             <Route path="/organization/:organizationId/dashboard" element={<AdminCompanyDashboard />} />
             <Route path="/organization/:organizationId/edit" element={<OrganizationEdit />} />
+            <Route path="/organization/:organizationId/albums" element={<ListAlbums />} />
             <Route path="/forbidden" element={<Forbidden />} />
           </Routes>
         </Layout>
