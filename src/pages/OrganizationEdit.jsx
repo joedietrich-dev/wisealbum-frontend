@@ -68,18 +68,22 @@ function OrganizationEdit() {
           <Subtitle>Invite Teammates</Subtitle>
           <p>TODO: Invitation Form</p>
           <Table>
-            <tr>
-              <th>Full Name</th>
-              <th>Email</th>
-              <th>Role</th>
-            </tr>
-            {org.users.map((user) => (
+            <thead>
               <tr>
-                <td>{user.full_name}</td>
-                <td>{user.email}</td>
-                <td>{user.role_id}</td>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th>Role</th>
               </tr>
-            ))}
+            </thead>
+            <tbody>
+              {org.users.map((user) => (
+                <tr key={user.id}>
+                  <td>{user.full_name}</td>
+                  <td>{user.email}</td>
+                  <td>{user.role_id}</td>
+                </tr>
+              ))}
+            </tbody>
           </Table>
         </>
       )}
