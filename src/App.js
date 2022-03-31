@@ -10,6 +10,7 @@ import Signup from "./pages/Signup";
 import Status from "./pages/Status";
 import OrganizationEdit from "./pages/OrganizationEdit";
 import Forbidden from "./pages/Forbidden";
+import Profile from "./pages/Profile";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/logout" element={<Logout />} />
+            <Route path="/profile" element={<Profile />} />
             <Route path="/status" element={<Status />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/organization/create" element={<OrganizationCreate />} />
