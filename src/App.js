@@ -2,7 +2,6 @@ import { Route, Routes } from "react-router-dom";
 import { AuthorizationProvider } from "./helpers/AuthorizationProvider";
 import Layout from "./layouts/Layout";
 import OrganizationCreate from "./pages/OrganizationCreate";
-import Dashboard from "./pages/Dashboard";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Logout from "./pages/Logout";
@@ -11,6 +10,8 @@ import Status from "./pages/Status";
 import OrganizationEdit from "./pages/OrganizationEdit";
 import Forbidden from "./pages/Forbidden";
 import Profile from "./pages/Profile";
+import UserDashboard from "./pages/UserDashboard";
+import AdminCompanyDashboard from "./pages/AdminCompanyDashboard";
 
 function App() {
   return (
@@ -24,8 +25,9 @@ function App() {
             <Route path="/logout" element={<Logout />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/status" element={<Status />} />
-            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/dashboard" element={<UserDashboard />} />
             <Route path="/organization/create" element={<OrganizationCreate />} />
+            <Route path="/organization/:organizationId/dashboard" element={<AdminCompanyDashboard />} />
             <Route path="/organization/:organizationId/edit" element={<OrganizationEdit />} />
             <Route path="/forbidden" element={<Forbidden />} />
           </Routes>
