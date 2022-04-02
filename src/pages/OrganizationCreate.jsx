@@ -23,17 +23,9 @@ function OrganizationCreate() {
   }, [user, navigate]);
 
   const handleSubmit = (values) => {
-    authorizedPost(`${process.env.REACT_APP_QUERY_DOMAIN}/organizations`, { organization: { ...values } })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          throw new Error(res.text().then((err) => err));
-        }
-      })
-      .then((json) => {
-        setUser({ ...user, organization_id: json.id });
-      });
+    authorizedPost(`/organizations`, { organization: { ...values } }).then((json) => {
+      setUser({ ...user, organization_id: json.id });
+    });
   };
 
   return (

@@ -25,6 +25,7 @@ function Dashboard({ user, organization }) {
         ) : null}
         <Card>
           <CardTitle>Albums</CardTitle>
+          <p>Total Albums: {organization.albums.length}</p>
           <Button onClick={() => navigate(`/organization/${organization.id}/albums`)}>Edit Albums</Button>
         </Card>
       </Deck>

@@ -20,20 +20,12 @@ function AuthorizationProvider({ children }) {
   const token = localStorage.getItem("token");
 
   const handleLogin = (data, callback = (f) => f) => {
-    return post(`${process.env.REACT_APP_QUERY_DOMAIN}/login`, {
+    return post(`/login`, {
       user: {
         email: data.email,
         password: data.password,
       },
     })
-      .then((res) => {
-        if (res.ok) {
-          localStorage.setItem("token", res.headers.get("Authorization"));
-          return res.json();
-        } else {
-          throw new Error(res);
-        }
-      })
       .then((json) => {
         const { id, full_name, role_id, organization_id } = json.data;
         setUser({

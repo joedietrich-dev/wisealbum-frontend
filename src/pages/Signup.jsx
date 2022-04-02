@@ -16,19 +16,11 @@ function Signup() {
         }}
         validationSchema={signupValidation}
         onSubmit={(values) => {
-          post(`${process.env.REACT_APP_QUERY_DOMAIN}/signup`, {
+          post(`/signup`, {
             user: {
               ...values,
             },
           })
-            .then((res) => {
-              if (res.ok) {
-                localStorage.setItem("token", res.headers.get("Authorization"));
-                return res.json();
-              } else {
-                throw new Error(res);
-              }
-            })
             .then((json) => console.dir(json))
             .catch((err) => console.error(err));
         }}
