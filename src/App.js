@@ -14,6 +14,7 @@ import UserDashboard from "./pages/UserDashboard";
 import AdminCompanyDashboard from "./pages/AdminCompanyDashboard";
 import ListAlbums from "./pages/ListAlbums";
 import AlbumCreate from "./pages/AlbumCreate";
+import AlbumEdit from "./pages/AlbumEdit";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
             <Route path="/organizations/:organizationId/edit" element={<OrganizationEdit />} />
             <Route path="/organizations/:organizationId/albums" element={<ListAlbums />} />
             <Route path="/organizations/:organizationId/albums/create" element={<AlbumCreate />} />
+            <Route path="/organizations/:organizationId/albums/:albumId/edit" element={<AlbumEdit />} />
             <Route path="/forbidden" element={<Forbidden />} />
           </Routes>
         </Layout>

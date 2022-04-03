@@ -10,25 +10,43 @@ import Subtitle from "../components/Subtitle";
 import Title from "../components/Title";
 import { useAuth } from "../helpers/AuthorizationProvider";
 import { authorizedGet } from "../helpers/fetchers/get";
+import { ROLE } from "../helpers/roles";
 
 function ListAlbums() {
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
   const { organizationId } = useParams();
   const [albums, setAlbums] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
+    if (!loading) {
+      // If the user is not a Super Admin or Org Owner who has no Org ID
+      if (ROLE.isSuperAdmin(user) || ((ROLE.isOrgOwner(user) || ROLE.isContributor(user)) && user.organization_id === parseInt(organizationId, 10))) {
+        console.log("Welcome");
+      } else {
+        navigate("/dashboard");
+      }
+    }
     authorizedGet(`/organizations/${organizationId}/albums`).then((json) => setAlbums(json));
-  }, [organizationId]);
+  }, [navigate, organizationId, user, loading]);
+
+  const handleEditAlbum = (albumId) => {
+    navigate(`/organizations/${organizationId}/albums/${albumId}/edit`);
+  };
 
   return (
-    // TO DO: Proper gating ofthe features involved
     <PageCard>
       <Title>Albums</Title>
       <Subtitle>View and edit your albums.</Subtitle>
       <Deck>
         {albums?.map((album) => (
-          <AlbumCard key={album.id} coverImage={album.cover_image_path} description={album.description} name={album.name} />
+          <AlbumCard
+            key={album.id}
+            coverImage={album.cover_image_path}
+            description={album.description}
+            name={album.name}
+            onEditAlbum={handleEditAlbum}
+          />
         ))}
         <Card>
           <CardTitle>Add Album</CardTitle>

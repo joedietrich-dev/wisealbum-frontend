@@ -1,5 +1,5 @@
 import { Form, Formik } from "formik";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Button from "../components/Button";
 import TextInput from "../components/TextInput";
 import Title from "../components/Title";
@@ -9,6 +9,7 @@ import { authorizedPost } from "../helpers/fetchers/post";
 import { useNavigate, useParams } from "react-router-dom";
 import { ROLE } from "../helpers/roles";
 import { createAlbumValidation } from "../helpers/validationSchemas/createAlbumValidation";
+import PageCard from "../components/PageCard";
 
 function AlbumCreate() {
   const { user, loading } = useAuth();
@@ -24,7 +25,7 @@ function AlbumCreate() {
         navigate("/dashboard");
       }
     }
-  }, [user, loading, navigate]);
+  }, [user, loading, navigate, organizationId]);
 
   const handleSubmit = (values) => {
     authorizedPost(`/organizations/${organizationId}/albums`, { album: { ...values } }).then((json) => {
@@ -33,7 +34,7 @@ function AlbumCreate() {
   };
 
   return (
-    <div>
+    <PageCard>
       <Title>Create Album</Title>
       <Subtitle>
         Create a new album! Give it a title, description, and optional cover image. Your album's generated url will display below as well.
@@ -49,10 +50,10 @@ function AlbumCreate() {
         <Form>
           <TextInput label="Album Name" name="name" />
           <TextInput label="Album Description" name="description" />
-          <Button type="submit">Save and Continue</Button>
+          <Button type="submit">Save</Button>
         </Form>
       </Formik>
-    </div>
+    </PageCard>
   );
 }
 
