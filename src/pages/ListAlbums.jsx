@@ -46,6 +46,7 @@ function ListAlbums() {
             description={album.description}
             name={album.name}
             onEditAlbum={handleEditAlbum}
+            id={album.id}
           />
         ))}
         <Card>

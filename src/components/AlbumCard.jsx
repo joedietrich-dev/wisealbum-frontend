@@ -13,7 +13,7 @@ function AlbumCard({ coverImage = "", description = "", id, name = "", onEditAlb
       <p>{description}</p>
       <ButtonGroup>
         <Button>View Album</Button>
-        <Button onClick={onEditAlbum}>Edit Album</Button>
+        <Button onClick={() => onEditAlbum(id)}>Edit Album</Button>
       </ButtonGroup>
     </Card>
   );
