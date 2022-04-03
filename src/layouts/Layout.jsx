@@ -15,7 +15,7 @@ function Layout({ children }) {
           <>
             <NavLink to="/dashboard">Dashboard</NavLink>
             {user.organization_id && (ROLE.isOrgOwner(user) || ROLE.isSuperAdmin(user)) ? (
-              <NavLink to={`/organization/${user.organization_id}/edit`}>Edit Organization</NavLink>
+              <NavLink to={`/organizations/${user.organization_id}/edit`}>Edit Organization</NavLink>
             ) : null}
             <NavLink to="/profile">My Profile</NavLink>
             <NavLink to="/logout">Logout</NavLink>

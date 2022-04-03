@@ -14,7 +14,7 @@ function UserDashboard() {
     if (!loading) {
       if (user.role_id === 2) {
         if (!user.organization_id) {
-          navigate("/organization/create");
+          navigate("/organizations/create");
         } else {
           authorizedGet(`/organizations/${user.organization_id}`)
             .then((json) => {

@@ -20,13 +20,13 @@ function Dashboard({ user, organization }) {
           <Card>
             <CardTitle>Users</CardTitle>
             <p>Total Users: {organization.users.length}</p>
-            <Button onClick={() => navigate(`/organization/${organization.id}/edit`)}>Edit Users</Button>
+            <Button onClick={() => navigate(`/organizations/${organization.id}/edit`)}>Edit Users</Button>
           </Card>
         ) : null}
         <Card>
           <CardTitle>Albums</CardTitle>
           <p>Total Albums: {organization.albums.length}</p>
-          <Button onClick={() => navigate(`/organization/${organization.id}/albums`)}>Edit Albums</Button>
+          <Button onClick={() => navigate(`/organizations/${organization.id}/albums`)}>Edit Albums</Button>
         </Card>
       </Deck>
     </PageCard>

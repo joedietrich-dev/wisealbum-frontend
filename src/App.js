@@ -13,6 +13,7 @@ import Profile from "./pages/Profile";
 import UserDashboard from "./pages/UserDashboard";
 import AdminCompanyDashboard from "./pages/AdminCompanyDashboard";
 import ListAlbums from "./pages/ListAlbums";
+import AlbumCreate from "./pages/AlbumCreate";
 
 function App() {
   return (
@@ -27,10 +28,11 @@ function App() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/status" element={<Status />} />
             <Route path="/dashboard" element={<UserDashboard />} />
-            <Route path="/organization/create" element={<OrganizationCreate />} />
-            <Route path="/organization/:organizationId/dashboard" element={<AdminCompanyDashboard />} />
-            <Route path="/organization/:organizationId/edit" element={<OrganizationEdit />} />
-            <Route path="/organization/:organizationId/albums" element={<ListAlbums />} />
+            <Route path="/organizations/create" element={<OrganizationCreate />} />
+            <Route path="/organizations/:organizationId/dashboard" element={<AdminCompanyDashboard />} />
+            <Route path="/organizations/:organizationId/edit" element={<OrganizationEdit />} />
+            <Route path="/organizations/:organizationId/albums" element={<ListAlbums />} />
+            <Route path="/organizations/:organizationId/albums/create" element={<AlbumCreate />} />
             <Route path="/forbidden" element={<Forbidden />} />
           </Routes>
         </Layout>

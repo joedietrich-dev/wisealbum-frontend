@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import AlbumCard from "../components/AlbumCard";
 import Button from "../components/Button";
 import Card from "../components/Card";
@@ -15,12 +15,11 @@ function ListAlbums() {
   const { user } = useAuth();
   const { organizationId } = useParams();
   const [albums, setAlbums] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     authorizedGet(`/organizations/${organizationId}/albums`).then((json) => setAlbums(json));
   }, [organizationId]);
-
-  console.log(albums);
 
   return (
     // TO DO: Proper gating ofthe features involved
@@ -33,7 +32,7 @@ function ListAlbums() {
         ))}
         <Card>
           <CardTitle>Add Album</CardTitle>
-          <Button>Add Album</Button>
+          <Button onClick={() => navigate(`/organizations/${organizationId}/albums/create`)}>Add Album</Button>
         </Card>
       </Deck>
     </PageCard>
