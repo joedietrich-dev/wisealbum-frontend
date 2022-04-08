@@ -1,6 +1,6 @@
 import { Form, Formik } from "formik";
 import { useEffect, useState } from "react";
-import { useNavigate, useNavigationType, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Button from "../components/Button";
 import MediaCard from "../components/MediaCard";
 import PageCard from "../components/PageCard";
@@ -8,8 +8,10 @@ import SectionTitle from "../components/SectionTitle";
 import Subtitle from "../components/Subtitle";
 import TextInput from "../components/TextInput";
 import Title from "../components/Title";
+import Uploader from "../components/Uploader";
 import { useAuth } from "../helpers/AuthorizationProvider";
 import { authorizedGet } from "../helpers/fetchers/get";
+import { authorizedPost } from "../helpers/fetchers/post";
 import { ROLE } from "../helpers/roles";
 import { editAlbumValidation } from "../helpers/validationSchemas/editAlbumValidation";
 
@@ -31,6 +33,11 @@ function AlbumEdit() {
   }, [navigate, organizationId, albumId, user, loading]);
 
   const handleSubmit = (f) => f;
+
+  const createMedia = (file, url) => {
+    const fileMetadata = { type: file.type, url, album_id: albumId };
+    authorizedPost("/media_files", fileMetadata).then(console.log);
+  };
 
   return (
     <PageCard>
@@ -56,6 +63,7 @@ function AlbumEdit() {
           <div style={{ width: "100%", padding: "32px", textAlign: "center", boxSizing: "border-box", border: "1px dotted black" }}>
             Media uploader
           </div>
+          <Uploader filePath={`albums/${albumId}/`} onUpload={createMedia} />
           <MediaCard />
           <Button>Delete</Button>
           <Button>Publish</Button>
