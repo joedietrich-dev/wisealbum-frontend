@@ -1,14 +1,22 @@
 import Button from "./Button";
 import CardHorizontal from "./CardHorizontal";
+import CardTitle from "./CardTitle";
 
-const MediaCard = () => {
+const MediaCard = ({ mediaFile, onEditMediaClick }) => {
+  const handleEditMediaClick = () => {
+    onEditMediaClick(mediaFile.id);
+  };
   return (
     <CardHorizontal>
       <div>
-        <img src="https://source.unsplash.com/100x100" />
+        {mediaFile.file_type.match(/image\//) ? (
+          <img src={mediaFile.url} alt={mediaFile.description} style={{ height: "100px", width: "auto" }} />
+        ) : (
+          <img src="https://source.unsplash.com/100x100" />
+        )}
       </div>
       <div>
-        <h3>Description</h3>
+        <CardTitle>Description</CardTitle>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
       </div>
       <div>
@@ -22,7 +30,7 @@ const MediaCard = () => {
         <div>Order Container</div>
       </div>
       <div>
-        <Button>Edit</Button>
+        <Button onClick={handleEditMediaClick}>Edit</Button>
         <Button>Delete</Button>
       </div>
     </CardHorizontal>

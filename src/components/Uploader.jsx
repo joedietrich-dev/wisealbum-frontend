@@ -26,7 +26,7 @@ async function uploadDirectly(
     body: file,
   });
   if (res.ok) {
-    onUpload(file, res.url);
+    onUpload(file, `${process.env.REACT_APP_MEDIA_DOMAIN}/${filename}`);
     return res.url;
   }
 }

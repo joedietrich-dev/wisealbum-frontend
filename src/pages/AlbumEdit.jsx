@@ -19,13 +19,17 @@ function AlbumEdit() {
   const { organizationId, albumId } = useParams();
   const { user, loading } = useAuth();
   const [album, setAlbum] = useState();
+  const [media, setMedia] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
     if (!loading) {
       // If the user is not a Super Admin or Org Owner who has no Org ID
       if (ROLE.isSuperAdmin(user) || ((ROLE.isOrgOwner(user) || ROLE.isContributor(user)) && user.organization_id === parseInt(organizationId, 10))) {
-        authorizedGet(`/organizations/${organizationId}/albums/${albumId}`).then((json) => setAlbum(json));
+        authorizedGet(`/organizations/${organizationId}/albums/${albumId}`).then((json) => {
+          setAlbum(json);
+        });
+        authorizedGet(`/media_files?album_id=${albumId}`).then((json) => setMedia(json));
       } else {
         navigate("/dashboard");
       }
@@ -35,8 +39,12 @@ function AlbumEdit() {
   const handleSubmit = (f) => f;
 
   const createMedia = (file, url) => {
-    const fileMetadata = { type: file.type, url, album_id: albumId };
-    authorizedPost("/media_files", fileMetadata).then(console.log);
+    const fileMetadata = { file_type: file.type, url, album_id: albumId };
+    authorizedPost("/media_files", fileMetadata).then((json) => setMedia((media) => [...media, json]));
+  };
+
+  const handleEditMediaClick = (id) => {
+    console.log("Click! " + id);
   };
 
   return (
@@ -64,7 +72,11 @@ function AlbumEdit() {
             Media uploader
           </div>
           <Uploader filePath={`albums/${albumId}/`} onUpload={createMedia} />
-          <MediaCard />
+          {media?.length ? (
+            media.map((mediaFile) => <MediaCard key={mediaFile.id} mediaFile={mediaFile} onEditMediaClick={handleEditMediaClick} />)
+          ) : (
+            <div>Please Add Media to your Album</div>
+          )}
           <Button>Delete</Button>
           <Button>Publish</Button>
           <Button>Delete</Button>
