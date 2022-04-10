@@ -1,6 +1,7 @@
 import { useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 import { authorizedPost } from "../helpers/fetchers/post";
+import UploadArea from "./UploadArea";
 
 async function getSignedUrl(filename) {
   const urlObject = await authorizedPost("/upload", { filename }).then((json) => json);
@@ -43,10 +44,10 @@ function Uploader({ filePath = "", onUpload = (f) => f }) {
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
   return (
-    <div {...getRootProps()}>
+    <UploadArea {...getRootProps()}>
       <input {...getInputProps()} />
       {isDragActive ? <p>Drop the files here ...</p> : <p>Drag 'n' drop some files here, or click to select files</p>}
-    </div>
+    </UploadArea>
   );
 }
 
