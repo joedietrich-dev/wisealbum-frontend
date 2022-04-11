@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useCallback, useContext, useEffect, useState } from "react";
 import { post } from "./fetchers/post";
 
 const authContext = createContext();
@@ -63,7 +63,7 @@ function AuthorizationProvider({ children }) {
     }
   };
 
-  const handlePersistUser = () => {
+  const handlePersistUser = useCallback(() => {
     fetch(`${process.env.REACT_APP_QUERY_DOMAIN}/current_user`, {
       method: "GET",
       headers: {
@@ -95,7 +95,7 @@ function AuthorizationProvider({ children }) {
         setLoading(false);
       })
       .catch((err) => console.log(err));
-  };
+  }, [token]);
 
   useEffect(() => {
     if (token && !user.id) {
@@ -109,7 +109,7 @@ function AuthorizationProvider({ children }) {
         token: undefined,
       });
     }
-  }, [token]);
+  }, [token, user, handlePersistUser]);
 
   return <authContext.Provider value={{ user, loading, setUser, handleLogin, handleLogout }}>{children}</authContext.Provider>;
 }

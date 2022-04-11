@@ -15,6 +15,7 @@ import AdminCompanyDashboard from "./pages/AdminCompanyDashboard";
 import ListAlbums from "./pages/ListAlbums";
 import AlbumCreate from "./pages/AlbumCreate";
 import AlbumEdit from "./pages/AlbumEdit";
+import MediaEdit from "./pages/MediaEdit";
 
 function App() {
   return (
@@ -35,7 +36,7 @@ function App() {
             <Route path="/organizations/:organizationId/albums" element={<ListAlbums />} />
             <Route path="/organizations/:organizationId/albums/create" element={<AlbumCreate />} />
             <Route path="/organizations/:organizationId/albums/:albumId/edit" element={<AlbumEdit />} />
-            <Route path="/organizations/:organizationId/albums/:albumId/:mediaId/edit" element={<AlbumEdit />} />
+            <Route path="/organizations/:organizationId/albums/:albumId/:mediaId/edit" element={<MediaEdit />} />
             <Route path="/forbidden" element={<Forbidden />} />
           </Routes>
         </Layout>

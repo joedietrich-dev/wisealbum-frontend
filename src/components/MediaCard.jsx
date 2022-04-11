@@ -1,10 +1,14 @@
 import Button from "./Button";
 import CardHorizontal from "./CardHorizontal";
 import CardTitle from "./CardTitle";
+import DeleteButton from "./DeleteButton";
 
-const MediaCard = ({ mediaFile, onEditMediaClick }) => {
+const MediaCard = ({ mediaFile, onEditMediaClick, onDeleteMediaClick }) => {
   const handleEditMediaClick = () => {
     onEditMediaClick(mediaFile.id);
+  };
+  const handleDeleteMediaClick = () => {
+    onDeleteMediaClick(mediaFile.id);
   };
   return (
     <CardHorizontal>
@@ -25,13 +29,13 @@ const MediaCard = ({ mediaFile, onEditMediaClick }) => {
       </div>
       <div>
         <div>
-          <i>Eye Icon</i>
+          <i>{!mediaFile.is_published || mediaFile.is_blocked ? "Not Visible" : "Visible"}</i>
         </div>
-        <div>Order Container</div>
+        <div>Order: {mediaFile.order}</div>
       </div>
       <div>
         <Button onClick={handleEditMediaClick}>Edit</Button>
-        <Button>Delete</Button>
+        <DeleteButton onDelete={handleDeleteMediaClick}>Delete</DeleteButton>
       </div>
     </CardHorizontal>
   );
