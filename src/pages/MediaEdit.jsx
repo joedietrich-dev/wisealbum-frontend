@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Button from "../components/Button";
 import DeleteButton from "../components/DeleteButton";
+import FormArea from "../components/FormArea";
 import MediaPreview from "../components/MediaPreview";
 import PageCard from "../components/PageCard";
 import Subtitle from "../components/Subtitle";
@@ -52,25 +53,27 @@ function MediaEdit() {
         <>
           <Title>Edit Media - {mediaId}</Title>
           <Subtitle>Give your media a description and some tags. They'll help you and your visitors find your content later.</Subtitle>
-          <Formik
-            initialValues={{
-              description: media.description || "",
-              tags: "",
-              is_published: media.is_published || false,
-              order: media.order || 0,
-            }}
-            onSubmit={handleSubmit}
-          >
-            <Form>
-              <ToggleField label="Published" name="is_published" />
-              <TextAreaInput label="Media Description" name="description" />
-              <TextInput label="Tags" name="tags" />
-              <TextInput label="Order" name="order" type="number" />
-              <DeleteButton onDelete={handleDelete}>Delete</DeleteButton>
-              <Button type="submit">Save</Button>
-            </Form>
-          </Formik>
-          <MediaPreview media={media} />
+          <FormArea>
+            <Formik
+              initialValues={{
+                description: media.description || "",
+                tags: "",
+                is_published: media.is_published,
+                order: media.order || 0,
+              }}
+              onSubmit={handleSubmit}
+            >
+              <Form>
+                <ToggleField label="Published" name="is_published" />
+                <TextAreaInput label="Media Description" name="description" />
+                <TextInput label="Tags" name="tags" />
+                <TextInput label="Order" name="order" type="number" />
+                <DeleteButton onDelete={handleDelete}>Delete</DeleteButton>
+                <Button type="submit">Save</Button>
+              </Form>
+            </Formik>
+            <MediaPreview media={media} />
+          </FormArea>
         </>
       )}
     </PageCard>

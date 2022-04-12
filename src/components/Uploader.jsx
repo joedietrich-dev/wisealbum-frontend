@@ -41,7 +41,7 @@ async function uploadDirectly(
   );
 }
 
-function Uploader({ filePath = "", onUpload = (f) => f }) {
+function Uploader({ placeholderText = "Drag 'n' drop some files here, or click to select files", filePath = "", onUpload = (f) => f }) {
   const [fileStatuses, setFileStatuses] = useState([]);
 
   const onDrop = useCallback(
@@ -59,12 +59,12 @@ function Uploader({ filePath = "", onUpload = (f) => f }) {
     <>
       <UploadArea {...getRootProps()}>
         <input {...getInputProps()} />
-        {isDragActive ? <p>Drop the files here ...</p> : <p>Drag 'n' drop some files here, or click to select files</p>}
+        {isDragActive ? <p>Drop the files here ...</p> : <p>{placeholderText}</p>}
       </UploadArea>
       {fileStatuses.map(
         (fileStatus) =>
           fileStatus.status !== "complete" && (
-            <div>
+            <div key={fileStatus.fileName}>
               {fileStatus.fileName}: {fileStatus.status}
             </div>
           )

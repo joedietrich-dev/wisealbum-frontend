@@ -9,6 +9,7 @@ import { authorizedPost } from "../helpers/fetchers/post";
 import { createOrganizationValidation } from "../helpers/validationSchemas/createOrganizationValidation";
 import { useNavigate } from "react-router-dom";
 import { ROLE } from "../helpers/roles";
+import FormArea from "../components/FormArea";
 
 function OrganizationCreate() {
   const { user, setUser } = useAuth();
@@ -31,18 +32,20 @@ function OrganizationCreate() {
     <div>
       <Title>Create Organization</Title>
       <Subtitle>Once you've set up your organization, you'll be able to add your teammates! </Subtitle>
-      <Formik
-        initialValues={{
-          name: "",
-        }}
-        onSubmit={handleSubmit}
-        validationSchema={createOrganizationValidation}
-      >
-        <Form>
-          <TextInput label="Organization Name" name="name" />
-          <Button type="submit">Save and Continue</Button>
-        </Form>
-      </Formik>
+      <FormArea>
+        <Formik
+          initialValues={{
+            name: "",
+          }}
+          onSubmit={handleSubmit}
+          validationSchema={createOrganizationValidation}
+        >
+          <Form>
+            <TextInput label="Organization Name" name="name" />
+            <Button type="submit">Save and Continue</Button>
+          </Form>
+        </Formik>
+      </FormArea>
     </div>
   );
 }

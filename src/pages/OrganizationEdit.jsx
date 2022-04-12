@@ -14,6 +14,7 @@ import { editOrganizationValidation } from "../helpers/validationSchemas/editOrg
 import Button from "../components/Button";
 import { authorizedPatch } from "../helpers/fetchers/patch";
 import Table from "../components/Table";
+import FormArea from "../components/FormArea";
 
 function OrganizationEdit() {
   const { organizationId } = useParams();
@@ -52,18 +53,20 @@ function OrganizationEdit() {
         <>
           <Title>Edit {org?.name}</Title>
           <Subtitle>Add your teammates and edit your organization details here.</Subtitle>
-          <Formik
-            initialValues={{
-              name: org?.name,
-            }}
-            onSubmit={handleSubmit}
-            validationSchema={editOrganizationValidation}
-          >
-            <Form>
-              <TextInput label="Organization Name" name="name" />
-              <Button type="submit">Save</Button>
-            </Form>
-          </Formik>
+          <FormArea>
+            <Formik
+              initialValues={{
+                name: org?.name,
+              }}
+              onSubmit={handleSubmit}
+              validationSchema={editOrganizationValidation}
+            >
+              <Form>
+                <TextInput label="Organization Name" name="name" />
+                <Button type="submit">Save</Button>
+              </Form>
+            </Formik>
+          </FormArea>
           <SectionTitle>Collaborators</SectionTitle>
           <Subtitle>Invite Teammates</Subtitle>
           <p>TODO: Invitation Form</p>

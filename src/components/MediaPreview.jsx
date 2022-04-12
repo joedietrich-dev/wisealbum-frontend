@@ -15,9 +15,9 @@ const VideoPreview = ({ media }) => {
 };
 
 function MediaPreview({ media }) {
-  if (media.file_type.match(/image\//)) {
+  if (media.file_type.match(/image/)) {
     return <ImagePreview media={media} />;
-  } else if (media.file_type.match(/video\//)) {
+  } else if (media.file_type.match(/video/)) {
     return <VideoPreview media={media} />;
   }
   return <div>MediaPreview</div>;
