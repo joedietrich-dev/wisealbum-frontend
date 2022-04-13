@@ -16,6 +16,7 @@ import ListAlbums from "./pages/ListAlbums";
 import AlbumCreate from "./pages/AlbumCreate";
 import AlbumEdit from "./pages/AlbumEdit";
 import MediaEdit from "./pages/MediaEdit";
+import Verify from "./pages/Verify";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
+            <Route path="/verify/:verificationToken" element={<Verify />} />
             <Route path="/logout" element={<Logout />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/status" element={<Status />} />

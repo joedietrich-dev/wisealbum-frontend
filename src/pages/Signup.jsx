@@ -1,12 +1,14 @@
 import { Form, Formik } from "formik";
+import ModalCard from "../components/ModalCard";
 import TextInput from "../components/TextInput";
+import Title from "../components/Title";
 import { post } from "../helpers/fetchers/post";
 import { signupValidation } from "../helpers/validationSchemas/signupValidation";
 
 function Signup() {
   return (
-    <div>
-      <h1>Signup</h1>
+    <ModalCard>
+      <Title>Signup</Title>
       <Formik
         initialValues={{
           full_name: "",
@@ -35,7 +37,7 @@ function Signup() {
           </Form>
         )}
       </Formik>
-    </div>
+    </ModalCard>
   );
 }
 

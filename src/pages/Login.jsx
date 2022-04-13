@@ -1,6 +1,8 @@
 import { Form, Formik } from "formik";
 import { useNavigate } from "react-router-dom";
+import ModalCard from "../components/ModalCard";
 import TextInput from "../components/TextInput";
+import Title from "../components/Title";
 import { useAuth } from "../helpers/AuthorizationProvider";
 
 function Login() {
@@ -14,8 +16,8 @@ function Login() {
   };
 
   return (
-    <div>
-      <h1>Login</h1>
+    <ModalCard>
+      <Title>Login</Title>
       <Formik
         initialValues={{
           email: "",
@@ -31,7 +33,7 @@ function Login() {
           </Form>
         )}
       </Formik>
-    </div>
+    </ModalCard>
   );
 }
 
