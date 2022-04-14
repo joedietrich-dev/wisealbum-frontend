@@ -1,5 +1,12 @@
+import PageCard from "../components/PageCard";
+import Title from "../components/Title";
+
 function Home() {
-  return <div>Home</div>;
+  return (
+    <PageCard>
+      <Title>WiseAlbum</Title>
+    </PageCard>
+  );
 }
 
 export default Home;
