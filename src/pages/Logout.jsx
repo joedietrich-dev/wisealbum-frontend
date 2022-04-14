@@ -8,7 +8,7 @@ function Logout() {
   useEffect(() => {
     handleLogout();
     navigate("/");
-  }, []);
+  }, [navigate, handleLogout]);
 
   return <div>You have successfully logged out.</div>;
 }
