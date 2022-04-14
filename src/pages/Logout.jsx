@@ -1,5 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import ModalCard from "../components/ModalCard";
+import Title from "../components/Title";
 import { useAuth } from "../helpers/AuthorizationProvider";
 
 function Logout() {
@@ -10,7 +12,12 @@ function Logout() {
     navigate("/");
   }, [navigate, handleLogout]);
 
-  return <div>You have successfully logged out.</div>;
+  return (
+    <ModalCard>
+      <Title>Log Out</Title>
+      <div>You have successfully logged out.</div>;
+    </ModalCard>
+  );
 }
 
 export default Logout;

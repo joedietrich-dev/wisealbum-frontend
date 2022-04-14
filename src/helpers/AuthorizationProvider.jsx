@@ -98,9 +98,9 @@ function AuthorizationProvider({ children }) {
   }, [token]);
 
   useEffect(() => {
-    if (token && !user.id) {
+    if (token) {
       handlePersistUser();
-    } else if (!token) {
+    } else {
       setUser({
         id: null,
         full_name: "",
@@ -109,7 +109,7 @@ function AuthorizationProvider({ children }) {
         token: undefined,
       });
     }
-  }, [token, user, handlePersistUser]);
+  }, [token, handlePersistUser]);
 
   return <authContext.Provider value={{ user, loading, setUser, handleLogin, handleLogout }}>{children}</authContext.Provider>;
 }

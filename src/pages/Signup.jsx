@@ -1,11 +1,19 @@
 import { Form, Formik } from "formik";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import ModalCard from "../components/ModalCard";
 import TextInput from "../components/TextInput";
 import Title from "../components/Title";
 import { post } from "../helpers/fetchers/post";
 import { signupValidation } from "../helpers/validationSchemas/signupValidation";
 
+const ErrorMessage = ({ message }) => {
+  return <div>{message}</div>;
+};
+
 function Signup() {
+  const navigate = useNavigate();
+  const [submitError, setSubmitError] = useState();
   return (
     <ModalCard>
       <Title>Signup</Title>
@@ -23,11 +31,17 @@ function Signup() {
               ...values,
             },
           })
-            .then((json) => console.dir(json))
-            .catch((err) => console.error(err));
+            .then(() => navigate("/signup/verification_sent"))
+            .catch((err) => {
+              if (err.message.includes("Email has already been taken")) {
+                setSubmitError("Email has been taken, please select another one.");
+              } else {
+                console.log(err.message);
+              }
+            });
         }}
       >
-        {({ errors, touched }) => (
+        {() => (
           <Form>
             <TextInput label="Full Name" name="full_name" />
             <TextInput label="Email Address" name="email" type="email" />
@@ -37,6 +51,8 @@ function Signup() {
           </Form>
         )}
       </Formik>
+      {submitError ? <ErrorMessage message={submitError} /> : null}
+      <Link to="/login">I already have an account</Link>
     </ModalCard>
   );
 }

@@ -1,46 +1,37 @@
 import { Form, Formik } from "formik";
+import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import ModalCard from "../components/ModalCard";
 import TextInput from "../components/TextInput";
 import Title from "../components/Title";
-import { useAuth } from "../helpers/AuthorizationProvider";
+import { post } from "../helpers/fetchers/post";
 
-function Login() {
-  const { handleLogin } = useAuth();
+function ForgotPassword() {
   const navigate = useNavigate();
-
   const handleSubmit = (data) => {
-    handleLogin(data, () => {
-      navigate("/dashboard");
-    });
+    post("/password", data);
+    navigate("/forgot_password/verification_sent");
   };
-
   return (
     <ModalCard>
-      <Title>Login</Title>
+      <Title>Forgot Your Password?</Title>
+
       <Formik
         initialValues={{
           email: "",
-          password: "",
         }}
         onSubmit={handleSubmit}
       >
         {() => (
           <Form>
             <TextInput label="Email Address" name="email" type="email" />
-            <TextInput label="Password" name="password" type="password" />
             <button type="submit">Submit</button>
           </Form>
         )}
       </Formik>
-      <p>
-        <Link to="/signup">I don't have an account yet</Link>
-      </p>
-      <p>
-        <Link to="/forgot_password">I forgot my password</Link>
-      </p>
+      <Link to="/signup">I don't have an account yet</Link>
     </ModalCard>
   );
 }
 
-export default Login;
+export default ForgotPassword;

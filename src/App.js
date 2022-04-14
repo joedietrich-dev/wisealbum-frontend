@@ -17,6 +17,10 @@ import AlbumCreate from "./pages/AlbumCreate";
 import AlbumEdit from "./pages/AlbumEdit";
 import MediaEdit from "./pages/MediaEdit";
 import Verify from "./pages/Verify";
+import SignupVerificationSent from "./pages/SignupVerificationSent";
+import ForgotPassword from "./pages/ForgotPassword";
+import ForgotPasswordSent from "./pages/ForgotPasswordSent";
+import ResetPassword from "./pages/ResetPassword";
 
 function App() {
   return (
@@ -26,7 +30,11 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/forgot_password" element={<ForgotPassword />} />
+            <Route path="/forgot_password/verification_sent" element={<ForgotPasswordSent />} />
+            <Route path="/reset_password/:verificationToken" element={<ResetPassword />} />
             <Route path="/signup" element={<Signup />} />
+            <Route path="/signup/verification_sent" element={<SignupVerificationSent />} />
             <Route path="/verify/:verificationToken" element={<Verify />} />
             <Route path="/logout" element={<Logout />} />
             <Route path="/profile" element={<Profile />} />
