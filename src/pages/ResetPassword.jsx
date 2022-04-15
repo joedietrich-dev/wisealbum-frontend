@@ -21,20 +21,20 @@ const ErrorMessage = () => (
 
 function ResetPassword() {
   const { verificationToken } = useParams();
-  const [isChanged, setIsChanged] = useState(false);
+  const [message, setMessage] = useState();
 
   const handleSubmit = (data) => {
     const sentData = { ...data, reset_password_token: verificationToken };
     put("/password", sentData)
-      .then(() => setIsChanged(true))
-      .catch(console.log);
+      .then(() => setMessage(<ThankYouMessage />))
+      .catch(() => setMessage(<ErrorMessage />));
   };
 
   return (
     <ModalCard>
       <Title>Reset Your Password</Title>
-      {isChanged ? (
-        <ThankYouMessage />
+      {message ? (
+        message
       ) : (
         <Formik
           initialValues={{

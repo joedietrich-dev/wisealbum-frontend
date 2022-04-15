@@ -17,6 +17,9 @@ function Layout({ children }) {
             {user.organization_id && (ROLE.isOrgOwner(user) || ROLE.isSuperAdmin(user)) ? (
               <NavLink to={`/organizations/${user.organization_id}/edit`}>Edit Organization</NavLink>
             ) : null}
+            {user.organization_id && (ROLE.isOrgOwner(user) || ROLE.isContributor(user)) ? (
+              <NavLink to={`/organizations/${user.organization_id}/albums`}>Edit Albums</NavLink>
+            ) : null}
             <NavLink to="/profile">My Profile</NavLink>
             <NavLink to="/logout">Logout</NavLink>
           </>
