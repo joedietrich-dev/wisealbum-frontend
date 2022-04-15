@@ -6,10 +6,7 @@ import TextInput from "../components/TextInput";
 import Title from "../components/Title";
 import { post } from "../helpers/fetchers/post";
 import { signupValidation } from "../helpers/validationSchemas/signupValidation";
-
-const ErrorMessage = ({ message }) => {
-  return <div>{message}</div>;
-};
+import ErrorMessage from "./ErrorMessage";
 
 function Signup() {
   const navigate = useNavigate();
@@ -51,7 +48,7 @@ function Signup() {
           </Form>
         )}
       </Formik>
-      {submitError ? <ErrorMessage message={submitError} /> : null}
+      {submitError ? <ErrorMessage>{submitError}</ErrorMessage> : null}
       <Link to="/login">I already have an account</Link>
     </ModalCard>
   );

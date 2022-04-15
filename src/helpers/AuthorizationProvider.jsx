@@ -19,7 +19,7 @@ function AuthorizationProvider({ children }) {
 
   const token = localStorage.getItem("token");
 
-  const handleLogin = (data, callback = (f) => f) => {
+  const handleLogin = (data, successCallback = (f) => f, errorCallback = (f) => f) => {
     return post(`/login`, {
       user: {
         email: data.email,
@@ -36,9 +36,9 @@ function AuthorizationProvider({ children }) {
           token: localStorage.getItem("token"),
         });
         setLoading(false);
-        callback();
+        successCallback();
       })
-      .catch((err) => console.error(err));
+      .catch((err) => errorCallback(err));
   };
 
   const handleLogout = () => {
