@@ -19,26 +19,27 @@ function AuthorizationProvider({ children }) {
 
   const token = localStorage.getItem("token");
 
-  const handleLogin = (data, successCallback = (f) => f, errorCallback = (f) => f) => {
-    return post(`/login`, {
-      user: {
-        email: data.email,
-        password: data.password,
-      },
-    })
-      .then((json) => {
-        const { id, full_name, role_id, organization_id } = json.data;
-        setUser({
-          id,
-          full_name,
-          role_id,
-          organization_id,
-          token: localStorage.getItem("token"),
-        });
-        setLoading(false);
-        successCallback();
-      })
-      .catch((err) => errorCallback(err));
+  const handleLogin = async (data, successCallback = (f) => f, errorCallback = (f) => f) => {
+    try {
+      const json = await post(`/login`, {
+        user: {
+          email: data.email,
+          password: data.password,
+        },
+      });
+      const { id, full_name, role_id, organization_id } = json.data;
+      setUser({
+        id,
+        full_name,
+        role_id,
+        organization_id,
+        token: localStorage.getItem("token"),
+      });
+      setLoading(false);
+      return successCallback();
+    } catch (err) {
+      return errorCallback(err);
+    }
   };
 
   const handleLogout = () => {

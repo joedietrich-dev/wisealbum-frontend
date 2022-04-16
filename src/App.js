@@ -12,7 +12,7 @@ import Forbidden from "./pages/Forbidden";
 import Profile from "./pages/Profile";
 import UserDashboard from "./pages/UserDashboard";
 import AdminCompanyDashboard from "./pages/AdminCompanyDashboard";
-import ListAlbums from "./pages/ListAlbums";
+import AlbumsList from "./pages/AlbumsList";
 import AlbumCreate from "./pages/AlbumCreate";
 import AlbumEdit from "./pages/AlbumEdit";
 import MediaEdit from "./pages/MediaEdit";
@@ -43,7 +43,7 @@ function App() {
             <Route path="/organizations/create" element={<OrganizationCreate />} />
             <Route path="/organizations/:organizationId/dashboard" element={<AdminCompanyDashboard />} />
             <Route path="/organizations/:organizationId/edit" element={<OrganizationEdit />} />
-            <Route path="/organizations/:organizationId/albums" element={<ListAlbums />} />
+            <Route path="/organizations/:organizationId/albums" element={<AlbumsList />} />
             <Route path="/organizations/:organizationId/albums/create" element={<AlbumCreate />} />
             <Route path="/organizations/:organizationId/albums/:albumId/edit" element={<AlbumEdit />} />
             <Route path="/organizations/:organizationId/albums/:albumId/:mediaId/edit" element={<MediaEdit />} />

@@ -52,6 +52,8 @@ function AlbumEdit() {
       .then(setAlbum)
       .catch((err) => console.error(err));
   };
+
+  // TODO
   const handleDeleteAlbumClick = (f) => f;
 
   const createMedia = (file, url) => {

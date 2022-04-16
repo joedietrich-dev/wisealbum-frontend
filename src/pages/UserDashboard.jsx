@@ -11,7 +11,7 @@ function UserDashboard() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!loading) {
+    if (!loading && user) {
       if (user.role_id === 2) {
         if (!user.organization_id) {
           navigate("/organizations/create");

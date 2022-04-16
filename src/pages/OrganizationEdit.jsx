@@ -15,6 +15,8 @@ import Button from "../components/Button";
 import { authorizedPatch } from "../helpers/fetchers/patch";
 import Table from "../components/Table";
 import FormArea from "../components/FormArea";
+import UploaderField from "../components/UploaderField";
+import MediaPreview from "../components/MediaPreview";
 
 function OrganizationEdit() {
   const { organizationId } = useParams();
@@ -28,7 +30,6 @@ function OrganizationEdit() {
       if (ROLE.isSuperAdmin(user) || (ROLE.isOrgOwner(user) && user.organization_id === parseInt(organizationId, 10))) {
         authorizedGet(`/organizations/${organizationId}`)
           .then((json) => {
-            console.log(json);
             setOrg(json);
             setIsOrgLoading(false);
           })
@@ -51,21 +52,25 @@ function OrganizationEdit() {
     <PageCard>
       {loading || isOrgLoading ? null : (
         <>
-          <Title>Edit {org?.name}</Title>
+          <Title>Edit {org.name}</Title>
           <Subtitle>Add your teammates and edit your organization details here.</Subtitle>
           <FormArea>
             <Formik
               initialValues={{
-                name: org?.name,
+                name: org.name,
+                logo_url: org.logo_url,
               }}
               onSubmit={handleSubmit}
               validationSchema={editOrganizationValidation}
             >
               <Form>
                 <TextInput label="Organization Name" name="name" />
+                <UploaderField filePath={`organizations/${organizationId}/logo/`} placeholderText="Upload a logo" name="logo_url" />
+
                 <Button type="submit">Save</Button>
               </Form>
             </Formik>
+            <MediaPreview media={{ url: org.logo_url, file_type: "image" }} />
           </FormArea>
           <SectionTitle>Collaborators</SectionTitle>
           <Subtitle>Invite Teammates</Subtitle>

@@ -12,22 +12,22 @@ import { useAuth } from "../helpers/AuthorizationProvider";
 import { authorizedGet } from "../helpers/fetchers/get";
 import { ROLE } from "../helpers/roles";
 
-function ListAlbums() {
+function AlbumsList() {
   const { user, loading } = useAuth();
   const { organizationId } = useParams();
   const [albums, setAlbums] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!loading) {
+    if (!loading && user) {
       // If the user is not a Super Admin or Org Owner who has no Org ID
       if (ROLE.isSuperAdmin(user) || ((ROLE.isOrgOwner(user) || ROLE.isContributor(user)) && user.organization_id === parseInt(organizationId, 10))) {
+        authorizedGet(`/organizations/${organizationId}/albums`).then((json) => setAlbums(json));
         console.log("Welcome");
       } else {
         navigate("/dashboard");
       }
     }
-    authorizedGet(`/organizations/${organizationId}/albums`).then((json) => setAlbums(json));
   }, [navigate, organizationId, user, loading]);
 
   const handleEditAlbum = (albumId) => {
@@ -58,4 +58,4 @@ function ListAlbums() {
   );
 }
 
-export default ListAlbums;
+export default AlbumsList;
