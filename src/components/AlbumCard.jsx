@@ -3,14 +3,15 @@ import Button from "./Button";
 import ButtonGroup from "./ButtonGroup";
 import Card from "./Card";
 import CardImage from "./CardImage";
+import CardText from "./CardText";
 import CardTitle from "./CardTitle";
 
-function AlbumCard({ coverImage = "", description = "", id, name = "", onEditAlbum = (f) => f }) {
+function AlbumCard({ id, coverImage = "", description = "", name = "", onEditAlbum = (f) => f }) {
   return (
     <Card>
       <CardImage src={coverImage} />
       <CardTitle>{name}</CardTitle>
-      <p>{description}</p>
+      <CardText>{description}</CardText>
       <ButtonGroup>
         <Button>View Album</Button>
         <Button onClick={() => onEditAlbum(id)}>Edit Album</Button>

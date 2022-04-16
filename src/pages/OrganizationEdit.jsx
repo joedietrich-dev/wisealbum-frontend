@@ -17,6 +17,11 @@ import Table from "../components/Table";
 import FormArea from "../components/FormArea";
 import UploaderField from "../components/UploaderField";
 import MediaPreview from "../components/MediaPreview";
+import TableHead from "../components/TableHead";
+import TableRow from "../components/TableRow";
+import TableHeader from "../components/TableHeader";
+import TableBody from "../components/TableBody";
+import TableData from "../components/TableData";
 
 function OrganizationEdit() {
   const { organizationId } = useParams();
@@ -76,22 +81,22 @@ function OrganizationEdit() {
           <Subtitle>Invite Teammates</Subtitle>
           <p>TODO: Invitation Form</p>
           <Table>
-            <thead>
-              <tr>
-                <th>Full Name</th>
-                <th>Email</th>
-                <th>Role</th>
-              </tr>
-            </thead>
-            <tbody>
+            <TableHead>
+              <TableRow>
+                <TableHeader>Full Name</TableHeader>
+                <TableHeader>Email</TableHeader>
+                <TableHeader>Role</TableHeader>
+              </TableRow>
+            </TableHead>
+            <TableBody>
               {org.users.map((user) => (
-                <tr key={user.id}>
-                  <td>{user.full_name}</td>
-                  <td>{user.email}</td>
-                  <td>{user.role_id}</td>
-                </tr>
+                <TableRow key={user.id}>
+                  <TableData>{user.full_name}</TableData>
+                  <TableData>{user.email}</TableData>
+                  <TableData>{user.role_id}</TableData>
+                </TableRow>
               ))}
-            </tbody>
+            </TableBody>
           </Table>
         </>
       )}

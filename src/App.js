@@ -21,6 +21,7 @@ import SignupVerificationSent from "./pages/SignupVerificationSent";
 import ForgotPassword from "./pages/ForgotPassword";
 import ForgotPasswordSent from "./pages/ForgotPasswordSent";
 import ResetPassword from "./pages/ResetPassword";
+import ComponentTestPage from "./pages/ComponentTestPage";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
         <Layout>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/test" element={<ComponentTestPage />} />
             <Route path="/login" element={<Login />} />
             <Route path="/forgot_password" element={<ForgotPassword />} />
             <Route path="/forgot_password/verification_sent" element={<ForgotPasswordSent />} />
