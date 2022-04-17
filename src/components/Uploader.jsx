@@ -1,6 +1,7 @@
 import { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { authorizedPost } from "../helpers/fetchers/post";
+import FileStatusContainer from "./FileStatusContainer";
 import UploadArea from "./UploadArea";
 
 async function getSignedUrl(filename) {
@@ -24,21 +25,24 @@ async function uploadDirectly(
 
   handleFileSet((fileStatuses) => [...fileStatuses, { fileName: file.name, status: "uploading" }]);
 
-  const signedUrl = await getSignedUrl(filename);
-  const res = await fetch(signedUrl, {
-    method: "PUT",
-    body: file,
-  });
-  if (res.ok) {
+  try {
+    const signedUrl = await getSignedUrl(filename);
+    const res = await fetch(signedUrl, {
+      method: "PUT",
+      body: file,
+    });
+    if (res.ok) {
+      handleFileSet((fileStatuses) =>
+        fileStatuses.map((fileStatus) => (fileStatus.fileName === file.name ? { ...fileStatus, status: "complete" } : fileStatus))
+      );
+      onUpload(file, `${process.env.REACT_APP_MEDIA_DOMAIN}/${filename}`);
+      return res.url;
+    }
+  } catch {
     handleFileSet((fileStatuses) =>
-      fileStatuses.map((fileStatus) => (fileStatus.fileName === file.name ? { ...fileStatus, status: "complete" } : fileStatus))
+      fileStatuses.map((fileStatus) => (fileStatus.fileName === file.name ? { ...fileStatus, status: "error" } : fileStatus))
     );
-    onUpload(file, `${process.env.REACT_APP_MEDIA_DOMAIN}/${filename}`);
-    return res.url;
   }
-  handleFileSet((fileStatuses) =>
-    fileStatuses.map((fileStatus) => (fileStatus.fileName === file.name ? { ...fileStatus, status: "error" } : fileStatus))
-  );
 }
 
 function Uploader({ placeholderText = "Drag 'n' drop some files here, or click to select files", filePath = "", onUpload = (f) => f }) {
@@ -60,15 +64,13 @@ function Uploader({ placeholderText = "Drag 'n' drop some files here, or click t
       <UploadArea {...getRootProps()}>
         <input {...getInputProps()} />
         {isDragActive ? <p>Drop the files here ...</p> : <p>{placeholderText}</p>}
+        {fileStatuses.length ? <h4 style={{ marginBottom: "0" }}>Uploads</h4> : null}
+        {fileStatuses.map((fileStatus) => (
+          <FileStatusContainer key={fileStatus.fileName}>
+            <div>{fileStatus.fileName}</div> <div>{fileStatus.status}</div>
+          </FileStatusContainer>
+        ))}
       </UploadArea>
-      {fileStatuses.map(
-        (fileStatus) =>
-          fileStatus.status !== "complete" && (
-            <div key={fileStatus.fileName}>
-              {fileStatus.fileName}: {fileStatus.status}
-            </div>
-          )
-      )}
     </>
   );
 }

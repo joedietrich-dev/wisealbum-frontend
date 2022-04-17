@@ -9,12 +9,12 @@ function UploaderField({ name, placeholderText = "Drag 'n' drop some files here,
   const onUpload = (file, url) => {
     setValue(url);
   };
-  return (
-    <>
-      <p>{value}</p>
-      <Uploader placeholderText={placeholderText} filePath={filePath} onUpload={onUpload} inputProps={field} />
-    </>
-  );
+
+  const fileParts = value.split("/");
+  const fileName = fileParts[fileParts.length - 1];
+  const placeholder = value ? `Drag files or click here to replace ${fileName}` : placeholderText;
+
+  return <Uploader placeholderText={placeholder} filePath={filePath} onUpload={onUpload} inputProps={field} />;
 }
 
 export default UploaderField;

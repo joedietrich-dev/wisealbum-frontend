@@ -162,6 +162,8 @@ function ComponentTestPage() {
             <TextInput label="greeting" name="greeting" />
             <TextAreaInput label="Long Text" name="longText" />
             <UploaderField filePath={`test/`} placeholderText="Upload a logo" name="imagePath" />
+            <DeleteButton onDelete={(f) => f}>Delete</DeleteButton>
+            <Button type="submit">Save</Button>
           </Form>
         </Formik>
         <MediaPreview media={{ url: imagePath, file_type: "image" }} />
