@@ -21,6 +21,7 @@ import UploaderField from "../components/UploaderField";
 import { authorizedPatch } from "../helpers/fetchers/patch";
 import FormArea from "../components/FormArea";
 import MediaPreview from "../components/MediaPreview";
+import DeckHorizontal from "../components/DeckHorizontal";
 
 function AlbumEdit() {
   const { organizationId, albumId } = useParams();
@@ -56,7 +57,7 @@ function AlbumEdit() {
   // TODO
   const handleDeleteAlbumClick = (f) => f;
 
-  const createMedia = (file, url) => {
+  const handleUpload = (file, url) => {
     const fileMetadata = { file_type: file.type, url, album_id: albumId };
     authorizedPost("/media_files", fileMetadata).then((json) => setMedia((media) => [...media, json]));
   };
@@ -73,6 +74,7 @@ function AlbumEdit() {
       .catch(console.error);
   };
 
+  if (media) console.log(media);
   return (
     <PageCard>
       {loading || isAlbumLoading ? null : (
@@ -104,16 +106,18 @@ function AlbumEdit() {
             <MediaPreview media={{ url: album.cover_image_path, file_type: "image" }} />
           </FormArea>
           <SectionTitle>Media</SectionTitle>
-          <Uploader filePath={`albums/${albumId}/`} onUpload={createMedia} />
+          <Uploader filePath={`albums/${albumId}/`} onUpload={handleUpload} />
           {media?.length ? (
-            media.map((mediaFile) => (
-              <MediaCard
-                key={mediaFile.id}
-                mediaFile={mediaFile}
-                onEditMediaClick={handleEditMediaClick}
-                onDeleteMediaClick={handleDeleteMediaClick}
-              />
-            ))
+            <DeckHorizontal>
+              {media.map((mediaFile) => (
+                <MediaCard
+                  key={mediaFile.id}
+                  mediaFile={mediaFile}
+                  onEditMediaClick={handleEditMediaClick}
+                  onDeleteMediaClick={handleDeleteMediaClick}
+                />
+              ))}
+            </DeckHorizontal>
           ) : (
             <div>Please Add Media to your Album</div>
           )}

@@ -1,6 +1,6 @@
 import styled from "styled-components/macro";
 
-const ModalCard = styled.div`
+const ModalCard = styled.main`
   width: 90%;
   max-width: 480px;
   margin: 16px auto;

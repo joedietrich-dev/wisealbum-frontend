@@ -6,7 +6,10 @@ import Card from "../components/Card";
 import CardText from "../components/CardText";
 import CardTitle from "../components/CardTitle";
 import Deck from "../components/Deck";
+import DeckHorizontal from "../components/DeckHorizontal";
+import DeleteButton from "../components/DeleteButton";
 import FormArea from "../components/FormArea";
+import MediaCard from "../components/MediaCard";
 import MediaPreview from "../components/MediaPreview";
 import PageCard from "../components/PageCard";
 import SectionTitle from "../components/SectionTitle";
@@ -20,7 +23,11 @@ import TableRow from "../components/TableRow";
 import TextAreaInput from "../components/TextAreaInput";
 import TextInput from "../components/TextInput";
 import Title from "../components/Title";
+import ToggleField from "../components/ToggleField";
+import Uploader from "../components/Uploader";
 import UploaderField from "../components/UploaderField";
+
+const HR = () => <hr style={{ margin: "32px" }} />;
 
 const imagePath = "https://wisealbum-media.s3.amazonaws.com/organizations/44/logo/ChurchChristmas.jpg";
 const name = "Joe Dietrich";
@@ -59,6 +66,85 @@ const albums = [
     description: "Photos taken yesterday and the day before when we ate chicken in the restaurant.",
   },
 ];
+
+const media = [
+  {
+    id: 83,
+    file_type: "image/png",
+    url: "https://wisealbum-media.s3.amazonaws.com/albums/9/Annotation 2020-04-07 224141.png",
+    description: "",
+    order: 1,
+    is_blocked: false,
+    is_published: true,
+    album_id: 9,
+    created_at: "2022-04-15T01:21:21.556Z",
+    updated_at: "2022-04-15T01:21:44.558Z",
+  },
+  {
+    id: 84,
+    file_type: "image/png",
+    url: "https://wisealbum-media.s3.amazonaws.com/albums/9/Annotation 2020-04-14 222954.png",
+    description: "",
+    order: 2,
+    is_blocked: false,
+    is_published: true,
+    album_id: 9,
+    created_at: "2022-04-15T01:21:22.115Z",
+    updated_at: "2022-04-15T01:22:06.736Z",
+  },
+  {
+    id: 85,
+    file_type: "image/png",
+    url: "https://wisealbum-media.s3.amazonaws.com/albums/9/Annotation 2020-04-17 162957.png",
+    description: "",
+    order: 3,
+    is_blocked: false,
+    is_published: true,
+    album_id: 9,
+    created_at: "2022-04-15T01:21:22.960Z",
+    updated_at: "2022-04-15T01:22:11.704Z",
+  },
+  {
+    id: 86,
+    file_type: "image/jpeg",
+    url: "https://wisealbum-media.s3.amazonaws.com/albums/9/inspo_1904_p.jpg",
+    description: null,
+    order: null,
+    is_blocked: false,
+    is_published: false,
+    album_id: 9,
+    created_at: "2022-04-16T17:01:58.146Z",
+    updated_at: "2022-04-16T17:01:58.146Z",
+  },
+  {
+    id: 87,
+    file_type: "image/jpeg",
+    url: "https://wisealbum-media.s3.amazonaws.com/albums/9/mood_layers.jpg",
+    description: null,
+    order: null,
+    is_blocked: false,
+    is_published: false,
+    album_id: 9,
+    created_at: "2022-04-16T17:02:06.232Z",
+    updated_at: "2022-04-16T17:02:06.232Z",
+  },
+];
+const mediaDescription = "Lorem ipsum dolor sit amet. Adleipsing edit marcono lapis. Enim ego ad usque monsteram ludetis.";
+const tags = "cheese, crackers, friendship";
+const order = 9;
+const mediaExample = {
+  album_id: 9,
+  created_at: "2022-04-15T01:21:22.115Z",
+  description: "",
+  file_type: "image/png",
+  id: 84,
+  is_blocked: false,
+  is_published: true,
+  order: 2,
+  updated_at: "2022-04-15T01:22:06.736Z",
+  url: "https://wisealbum-media.s3.amazonaws.com/albums/9/Annotation 2020-04-14 222954.png",
+};
+const isPublished = true;
 
 function ComponentTestPage() {
   return (
@@ -99,6 +185,7 @@ function ComponentTestPage() {
           ))}
         </TableBody>
       </Table>
+      <HR />
       <SectionTitle>Decks and Cards</SectionTitle>
       <Subtitle>Dashboard</Subtitle>
       <Deck>
@@ -113,6 +200,7 @@ function ComponentTestPage() {
           <Button>Edit Albums</Button>
         </Card>
       </Deck>
+      <HR />
       <SectionTitle>Image Decks and Cards</SectionTitle>
       <Subtitle>Albums</Subtitle>
       <Deck>
@@ -127,6 +215,39 @@ function ComponentTestPage() {
           />
         ))}
       </Deck>
+      <HR />
+
+      <SectionTitle>Media</SectionTitle>
+      <Uploader filePath={`albums/test/`} onUpload={(f) => f} />
+      <DeckHorizontal>
+        {media.map((mediaFile) => (
+          <MediaCard key={mediaFile.id} mediaFile={mediaFile} onEditMediaClick={(f) => f} onDeleteMediaClick={(f) => f} />
+        ))}
+      </DeckHorizontal>
+      <HR />
+
+      <SectionTitle>Edit Media</SectionTitle>
+      <FormArea>
+        <Formik
+          initialValues={{
+            description: mediaDescription,
+            tags,
+            is_published: isPublished,
+            order,
+          }}
+          onSubmit={(f) => f}
+        >
+          <Form>
+            <ToggleField label="Published" name="is_published" />
+            <TextAreaInput label="Media Description" name="description" />
+            <TextInput label="Tags" name="tags" />
+            <TextInput label="Order" name="order" type="number" />
+            <DeleteButton onDelete={(f) => f}>Delete</DeleteButton>
+            <Button type="submit">Save</Button>
+          </Form>
+        </Formik>
+        <MediaPreview media={mediaExample} />
+      </FormArea>
     </PageCard>
   );
 }
