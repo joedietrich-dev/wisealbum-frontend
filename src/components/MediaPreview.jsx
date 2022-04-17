@@ -1,16 +1,24 @@
 import React from "react";
+import styled from "styled-components/macro";
 
-const ImagePreview = ({ media }) => <img src={media.url} alt={media.description} style={{ height: "auto", maxWidth: "50%" }} />;
+const MediaContainer = styled.div`
+  width: 100%;
+`;
+const ImagePreview = ({ media }) => (
+  <MediaContainer>
+    <img src={media.url} alt={media.description} style={{ height: "auto", maxWidth: "100%" }} />
+  </MediaContainer>
+);
 const VideoPreview = ({ media }) => {
   return (
-    <>
+    <MediaContainer>
       {!!media.url && (
         <video key={media.id} controls style={{ maxWidth: "100%" }}>
           <source src={media.url} type={media.file_type} />
           <p>Please try again</p>
         </video>
       )}
-    </>
+    </MediaContainer>
   );
 };
 
