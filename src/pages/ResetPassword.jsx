@@ -1,4 +1,5 @@
-import { Form, Formik } from "formik";
+import { Formik } from "formik";
+import Form from "../components/Form";
 import React, { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import ModalCard from "../components/ModalCard";

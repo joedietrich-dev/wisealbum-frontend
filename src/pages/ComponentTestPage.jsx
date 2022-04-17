@@ -1,4 +1,5 @@
-import { Form, Formik } from "formik";
+import { Formik } from "formik";
+import Form from "../components/Form";
 import React from "react";
 import AlbumCard from "../components/AlbumCard";
 import Button from "../components/Button";

@@ -1,4 +1,5 @@
-import { Form, Formik } from "formik";
+import { Formik } from "formik";
+import Form from "../components/Form";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Button from "../components/Button";
@@ -18,7 +19,7 @@ import { authorizedPatch } from "../helpers/fetchers/patch";
 import { ROLE } from "../helpers/roles";
 
 function MediaEdit() {
-  const { organizationId, albumId, mediaId } = useParams();
+  const { organizationId, mediaId } = useParams();
   const { user, loading } = useAuth();
   const [media, setMedia] = useState();
   const navigate = useNavigate();

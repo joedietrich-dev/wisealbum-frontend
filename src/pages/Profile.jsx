@@ -5,7 +5,8 @@ import Subtitle from "../components/Subtitle";
 import { useAuth } from "../helpers/AuthorizationProvider";
 import { post } from "../helpers/fetchers/post";
 import { useState } from "react";
-import { Form, Formik } from "formik";
+import { Formik } from "formik";
+import Form from "../components/Form";
 import TextInput from "../components/TextInput";
 
 function Profile() {

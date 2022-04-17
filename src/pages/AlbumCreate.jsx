@@ -1,4 +1,5 @@
-import { Form, Formik } from "formik";
+import { Formik } from "formik";
+import Form from "../components/Form";
 import { useEffect } from "react";
 import Button from "../components/Button";
 import TextInput from "../components/TextInput";
