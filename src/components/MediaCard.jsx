@@ -1,7 +1,8 @@
-import Button from "./Button";
+import ButtonGroup from "./ButtonGroup";
 import CardHorizontal from "./CardHorizontal";
 import CardTitle from "./CardTitle";
 import DeleteButton from "./DeleteButton";
+import PrimaryButton from "./PrimaryButton";
 
 const MediaCard = ({ mediaFile, onEditMediaClick, onDeleteMediaClick }) => {
   const handleEditMediaClick = () => {
@@ -33,10 +34,10 @@ const MediaCard = ({ mediaFile, onEditMediaClick, onDeleteMediaClick }) => {
         </div>
         <div>Order: {mediaFile.order}</div>
       </div>
-      <div>
-        <Button onClick={handleEditMediaClick}>Edit</Button>
+      <ButtonGroup direction="column" justify="space-between">
+        <PrimaryButton onClick={handleEditMediaClick}>Edit</PrimaryButton>
         <DeleteButton onDelete={handleDeleteMediaClick}>Delete</DeleteButton>
-      </div>
+      </ButtonGroup>
     </CardHorizontal>
   );
 };

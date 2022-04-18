@@ -2,7 +2,6 @@ import { Formik } from "formik";
 import Form from "../components/Form";
 import React from "react";
 import AlbumCard from "../components/AlbumCard";
-import Button from "../components/Button";
 import Card from "../components/Card";
 import CardText from "../components/CardText";
 import CardTitle from "../components/CardTitle";
@@ -27,6 +26,8 @@ import Title from "../components/Title";
 import ToggleField from "../components/ToggleField";
 import Uploader from "../components/Uploader";
 import UploaderField from "../components/UploaderField";
+import PrimaryButton from "../components/PrimaryButton";
+import ButtonGroup from "../components/ButtonGroup";
 
 const HR = () => <hr style={{ margin: "32px" }} />;
 
@@ -62,6 +63,30 @@ const albums = [
   },
   {
     id: 4,
+    name: "Happy Path Album",
+    cover_image_path: "https://wisealbum-media.s3.amazonaws.com/albums/9/mood_layers.jpg",
+    description: "Photos taken yesterday and the day before when we ate chicken in the restaurant.",
+  },
+  {
+    id: 5,
+    name: "This is an album name",
+    cover_image_path: "https://wisealbum-media.s3.amazonaws.com/organizations/44/logo/ChurchChristmas.jpg",
+    description: longText,
+  },
+  {
+    id: 6,
+    name: "Named Album",
+    cover_image_path: "https://wisealbum-media.s3.amazonaws.com/albums/9/cover/ADS%20BRAINSTORM.png",
+    description: "This is shorter description text",
+  },
+  {
+    id: 7,
+    name: "Whoever named this album should be shot",
+    cover_image_path: "https://wisealbum-media.s3.amazonaws.com/albums/9/inspo_1904_p.jpg",
+    description: "This is shorter description text",
+  },
+  {
+    id: 8,
     name: "Happy Path Album",
     cover_image_path: "https://wisealbum-media.s3.amazonaws.com/albums/9/mood_layers.jpg",
     description: "Photos taken yesterday and the day before when we ate chicken in the restaurant.",
@@ -162,8 +187,10 @@ function ComponentTestPage() {
             <TextInput label="greeting" name="greeting" />
             <TextAreaInput label="Long Text" name="longText" />
             <UploaderField filePath={`test/`} placeholderText="Upload a logo" name="imagePath" />
-            <DeleteButton onDelete={(f) => f}>Delete</DeleteButton>
-            <Button type="submit">Save</Button>
+            <ButtonGroup justify="space-between">
+              <DeleteButton onDelete={(f) => f}>Delete</DeleteButton>
+              <PrimaryButton type="submit">Save</PrimaryButton>
+            </ButtonGroup>
           </Form>
         </Formik>
         <MediaPreview media={{ url: imagePath, file_type: "image" }} />
@@ -195,12 +222,12 @@ function ComponentTestPage() {
         <Card>
           <CardTitle>Users</CardTitle>
           <CardText>Total Users: {users.length}</CardText>
-          <Button>Edit Users</Button>
+          <PrimaryButton>Edit Users</PrimaryButton>
         </Card>
         <Card>
           <CardTitle>Albums</CardTitle>
           <CardText>Total Albums: {users.length}</CardText>
-          <Button>Edit Albums</Button>
+          <PrimaryButton>Edit Albums</PrimaryButton>
         </Card>
       </Deck>
       <HR />
@@ -245,8 +272,10 @@ function ComponentTestPage() {
             <TextAreaInput label="Media Description" name="description" />
             <TextInput label="Tags" name="tags" />
             <TextInput label="Order" name="order" type="number" />
-            <DeleteButton onDelete={(f) => f}>Delete</DeleteButton>
-            <Button type="submit">Save</Button>
+            <ButtonGroup justify="space-between">
+              <DeleteButton onDelete={(f) => f}>Delete</DeleteButton>
+              <PrimaryButton type="submit">Save</PrimaryButton>
+            </ButtonGroup>
           </Form>
         </Formik>
         <MediaPreview media={mediaExample} />

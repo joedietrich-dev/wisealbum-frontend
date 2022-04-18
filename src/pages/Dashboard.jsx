@@ -6,8 +6,8 @@ import Deck from "../components/Deck";
 import Card from "../components/Card";
 import CardTitle from "../components/CardTitle";
 import { ROLE } from "../helpers/roles";
-import Button from "../components/Button";
 import CardText from "../components/CardText";
+import PrimaryButton from "../components/PrimaryButton";
 
 function Dashboard({ user, organization }) {
   const navigate = useNavigate();
@@ -21,13 +21,13 @@ function Dashboard({ user, organization }) {
           <Card>
             <CardTitle>Users</CardTitle>
             <CardText>Total Users: {organization.users.length}</CardText>
-            <Button onClick={() => navigate(`/organizations/${organization.id}/edit`)}>Edit Users</Button>
+            <PrimaryButton onClick={() => navigate(`/organizations/${organization.id}/edit`)}>Edit Users</PrimaryButton>
           </Card>
         ) : null}
         <Card>
           <CardTitle>Albums</CardTitle>
           <CardText>Total Albums: {organization.albums.length}</CardText>
-          <Button onClick={() => navigate(`/organizations/${organization.id}/albums`)}>Edit Albums</Button>
+          <PrimaryButton onClick={() => navigate(`/organizations/${organization.id}/albums`)}>Edit Albums</PrimaryButton>
         </Card>
       </Deck>
     </PageCard>

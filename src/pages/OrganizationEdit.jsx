@@ -12,7 +12,6 @@ import { Formik } from "formik";
 import Form from "../components/Form";
 import TextInput from "../components/TextInput";
 import { editOrganizationValidation } from "../helpers/validationSchemas/editOrganizationValidation";
-import Button from "../components/Button";
 import { authorizedPatch } from "../helpers/fetchers/patch";
 import Table from "../components/Table";
 import FormArea from "../components/FormArea";
@@ -23,6 +22,7 @@ import TableRow from "../components/TableRow";
 import TableHeader from "../components/TableHeader";
 import TableBody from "../components/TableBody";
 import TableData from "../components/TableData";
+import PrimaryButton from "../components/PrimaryButton";
 
 function OrganizationEdit() {
   const { organizationId } = useParams();
@@ -73,7 +73,7 @@ function OrganizationEdit() {
                 <TextInput label="Organization Name" name="name" />
                 <UploaderField filePath={`organizations/${organizationId}/logo/`} placeholderText="Upload a logo" name="logo_url" />
 
-                <Button type="submit">Save</Button>
+                <PrimaryButton type="submit">Save</PrimaryButton>
               </Form>
             </Formik>
             <MediaPreview media={{ url: org.logo_url, file_type: "image" }} />

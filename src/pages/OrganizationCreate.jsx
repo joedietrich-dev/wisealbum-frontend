@@ -1,7 +1,6 @@
 import { Formik } from "formik";
 import Form from "../components/Form";
 import { useEffect } from "react";
-import Button from "../components/Button";
 import TextInput from "../components/TextInput";
 import Title from "../components/Title";
 import Subtitle from "../components/Subtitle";
@@ -11,6 +10,7 @@ import { createOrganizationValidation } from "../helpers/validationSchemas/creat
 import { useNavigate } from "react-router-dom";
 import { ROLE } from "../helpers/roles";
 import FormArea from "../components/FormArea";
+import PrimaryButton from "../components/PrimaryButton";
 
 function OrganizationCreate() {
   const { user, setUser } = useAuth();
@@ -43,7 +43,7 @@ function OrganizationCreate() {
         >
           <Form>
             <TextInput label="Organization Name" name="name" />
-            <Button type="submit">Save and Continue</Button>
+            <PrimaryButton type="submit">Save and Continue</PrimaryButton>
           </Form>
         </Formik>
       </FormArea>

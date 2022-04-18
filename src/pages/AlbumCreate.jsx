@@ -1,7 +1,6 @@
 import { Formik } from "formik";
 import Form from "../components/Form";
 import { useEffect } from "react";
-import Button from "../components/Button";
 import TextInput from "../components/TextInput";
 import TextAreaInput from "../components/TextAreaInput";
 import Title from "../components/Title";
@@ -12,6 +11,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { ROLE } from "../helpers/roles";
 import { createAlbumValidation } from "../helpers/validationSchemas/createAlbumValidation";
 import PageCard from "../components/PageCard";
+import PrimaryButton from "../components/PrimaryButton";
 
 function AlbumCreate() {
   const { user, loading } = useAuth();
@@ -52,7 +52,7 @@ function AlbumCreate() {
         <Form>
           <TextInput label="Album Name" name="name" />
           <TextAreaInput label="Album Description" name="description" />
-          <Button type="submit">Save</Button>
+          <PrimaryButton type="submit">Save</PrimaryButton>
         </Form>
       </Formik>
     </PageCard>

@@ -21,10 +21,14 @@ const InputGroup = styled.div`
     padding: 12px;
     border: 0;
     background-color: #f3f3f3;
-    outline: 2px solid rgba(2, 24, 43, 0.5);
+    outline: 2px solid rgba(2, 24, 43, 1);
     outline-offset: 8px;
     width: calc(100% - 20px);
     align-self: center;
+  }
+
+  input {
+    line-height: 1;
   }
 
   textarea {

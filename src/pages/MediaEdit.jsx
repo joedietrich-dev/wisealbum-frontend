@@ -2,7 +2,6 @@ import { Formik } from "formik";
 import Form from "../components/Form";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import Button from "../components/Button";
 import DeleteButton from "../components/DeleteButton";
 import FormArea from "../components/FormArea";
 import MediaPreview from "../components/MediaPreview";
@@ -17,6 +16,8 @@ import { authorizedDestroy } from "../helpers/fetchers/destroy";
 import { authorizedGet } from "../helpers/fetchers/get";
 import { authorizedPatch } from "../helpers/fetchers/patch";
 import { ROLE } from "../helpers/roles";
+import ButtonGroup from "../components/ButtonGroup";
+import PrimaryButton from "../components/PrimaryButton";
 
 function MediaEdit() {
   const { organizationId, mediaId } = useParams();
@@ -69,8 +70,10 @@ function MediaEdit() {
                 <TextAreaInput label="Media Description" name="description" />
                 <TextInput label="Tags" name="tags" />
                 <TextInput label="Order" name="order" type="number" />
-                <DeleteButton onDelete={handleDelete}>Delete</DeleteButton>
-                <Button type="submit">Save</Button>
+                <ButtonGroup justify="space-between">
+                  <DeleteButton onDelete={handleDelete}>Delete</DeleteButton>
+                  <PrimaryButton type="submit">Save</PrimaryButton>
+                </ButtonGroup>
               </Form>
             </Formik>
             <MediaPreview media={media} />

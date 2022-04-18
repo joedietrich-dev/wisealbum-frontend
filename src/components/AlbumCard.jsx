@@ -1,10 +1,11 @@
 import React from "react";
-import Button from "./Button";
 import ButtonGroup from "./ButtonGroup";
 import Card from "./Card";
 import CardImage from "./CardImage";
 import CardText from "./CardText";
 import CardTitle from "./CardTitle";
+import PrimaryButton from "./PrimaryButton";
+import SecondaryButton from "./SecondaryButton";
 
 function AlbumCard({ id, coverImage = "", description = "", name = "", onEditAlbum = (f) => f }) {
   return (
@@ -13,8 +14,8 @@ function AlbumCard({ id, coverImage = "", description = "", name = "", onEditAlb
       <CardTitle>{name}</CardTitle>
       <CardText>{description}</CardText>
       <ButtonGroup>
-        <Button>View Album</Button>
-        <Button onClick={() => onEditAlbum(id)}>Edit Album</Button>
+        <SecondaryButton>View Album</SecondaryButton>
+        <PrimaryButton onClick={() => onEditAlbum(id)}>Edit Album</PrimaryButton>
       </ButtonGroup>
     </Card>
   );

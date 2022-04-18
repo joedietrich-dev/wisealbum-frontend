@@ -2,7 +2,6 @@ import { Formik } from "formik";
 import Form from "../components/Form";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import Button from "../components/Button";
 import MediaCard from "../components/MediaCard";
 import PageCard from "../components/PageCard";
 import SectionTitle from "../components/SectionTitle";
@@ -23,6 +22,9 @@ import { authorizedPatch } from "../helpers/fetchers/patch";
 import FormArea from "../components/FormArea";
 import MediaPreview from "../components/MediaPreview";
 import DeckHorizontal from "../components/DeckHorizontal";
+import DeleteButton from "../components/DeleteButton";
+import PrimaryButton from "../components/PrimaryButton";
+import ButtonGroup from "../components/ButtonGroup";
 
 function AlbumEdit() {
   const { organizationId, albumId } = useParams();
@@ -98,16 +100,22 @@ function AlbumEdit() {
                 <ToggleField label="Published" name="is_published" />
                 <TextAreaInput label="Album Description" name="description" />
                 <UploaderField filePath={`albums/${albumId}/cover/`} placeholderText="Upload a cover image" name="cover_image_path" />
-                <Button type="button" onClick={handleDeleteAlbumClick}>
-                  Delete Album
-                </Button>
-                <Button type="submit">Save</Button>
+                <ButtonGroup justify="space-between">
+                  <DeleteButton type="button" onDelete={handleDeleteAlbumClick}>
+                    Delete Album
+                  </DeleteButton>
+                  <PrimaryButton type="submit">Save</PrimaryButton>
+                </ButtonGroup>
               </Form>
             </Formik>
             <MediaPreview media={{ url: album.cover_image_path, file_type: "image" }} />
           </FormArea>
           <SectionTitle>Media</SectionTitle>
-          <Uploader filePath={`albums/${albumId}/`} onUpload={handleUpload} />
+          <Uploader
+            placeholderText="Please add media to your album by clicking or dragging files here"
+            filePath={`albums/${albumId}/`}
+            onUpload={handleUpload}
+          />
           {media?.length ? (
             <DeckHorizontal>
               {media.map((mediaFile) => (
@@ -119,9 +127,7 @@ function AlbumEdit() {
                 />
               ))}
             </DeckHorizontal>
-          ) : (
-            <div>Please Add Media to your Album</div>
-          )}
+          ) : null}
         </>
       )}
     </PageCard>

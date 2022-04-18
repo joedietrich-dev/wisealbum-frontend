@@ -6,7 +6,7 @@ const UploadArea = styled.div`
   margin-top: 8px;
   text-align: center;
   box-sizing: border-box;
-  border: 2px dotted black;
+  border: 2px dotted #02182b;
 `;
 
 export default UploadArea;

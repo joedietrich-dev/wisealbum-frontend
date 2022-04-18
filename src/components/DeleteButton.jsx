@@ -1,21 +1,29 @@
 import React, { useState } from "react";
-import Button from "./Button";
+import styled from "styled-components/macro";
+import SecondaryButton from "./SecondaryButton";
 
 function DeleteButton({ onDelete = (f) => f }) {
   const [isClicked, setIsClicked] = useState(false);
   return (
     <>
       {isClicked ? (
-        <Button type="button" onClick={onDelete}>
+        <Wrapper type="button" onClick={onDelete}>
           Delete, Really
-        </Button>
+        </Wrapper>
       ) : (
-        <Button type="button" onClick={() => setIsClicked(true)}>
+        <Wrapper type="button" onClick={() => setIsClicked(true)}>
           Delete
-        </Button>
+        </Wrapper>
       )}
     </>
   );
 }
+
+const Wrapper = styled(SecondaryButton)`
+  :hover {
+    background-color: #d7263d;
+    color: #ffffff;
+  }
+`;
 
 export default DeleteButton;

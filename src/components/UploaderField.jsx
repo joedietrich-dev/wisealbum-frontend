@@ -10,7 +10,7 @@ function UploaderField({ name, placeholderText = "Drag 'n' drop some files here,
     setValue(url);
   };
 
-  const fileParts = value.split("/");
+  const fileParts = value?.split("/") || "";
   const fileName = fileParts[fileParts.length - 1];
   const placeholder = value ? `Drag files or click here to replace ${fileName}` : placeholderText;
 
