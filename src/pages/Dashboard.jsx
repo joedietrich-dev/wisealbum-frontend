@@ -8,6 +8,7 @@ import CardTitle from "../components/CardTitle";
 import { ROLE } from "../helpers/roles";
 import CardText from "../components/CardText";
 import PrimaryButton from "../components/PrimaryButton";
+import CardContent from "../components/CardContent";
 
 function Dashboard({ user, organization }) {
   const navigate = useNavigate();
@@ -19,14 +20,18 @@ function Dashboard({ user, organization }) {
       <Deck>
         {ROLE.isSuperAdmin(user) || ROLE.isOrgOwner(user) ? (
           <Card>
-            <CardTitle>Users</CardTitle>
-            <CardText>Total Users: {organization.users.length}</CardText>
+            <CardContent>
+              <CardTitle>Users</CardTitle>
+              <CardText>Total Users: {organization.users.length}</CardText>
+            </CardContent>
             <PrimaryButton onClick={() => navigate(`/organizations/${organization.id}/edit`)}>Edit Users</PrimaryButton>
           </Card>
         ) : null}
         <Card>
-          <CardTitle>Albums</CardTitle>
-          <CardText>Total Albums: {organization.albums.length}</CardText>
+          <CardContent>
+            <CardTitle>Albums</CardTitle>
+            <CardText>Total Albums: {organization.albums.length}</CardText>
+          </CardContent>
           <PrimaryButton onClick={() => navigate(`/organizations/${organization.id}/albums`)}>Edit Albums</PrimaryButton>
         </Card>
       </Deck>

@@ -1,4 +1,5 @@
 import ButtonGroup from "./ButtonGroup";
+import CardContent from "./CardContent";
 import CardHorizontal from "./CardHorizontal";
 import CardTitle from "./CardTitle";
 import DeleteButton from "./DeleteButton";
@@ -13,16 +14,16 @@ const MediaCard = ({ mediaFile, onEditMediaClick, onDeleteMediaClick }) => {
   };
   return (
     <CardHorizontal>
-      <div>
+      <div style={{ width: "100%" }}>
         {mediaFile.file_type.match(/image\//) ? (
-          <img src={mediaFile.url} alt={mediaFile.description} style={{ height: "100px", width: "auto" }} />
+          <img src={mediaFile.url} alt={mediaFile.description} style={{ height: "150px", width: "100%", objectFit: "cover" }} />
         ) : (
           <img src="https://source.unsplash.com/100x100" alt="placeholder media" />
         )}
       </div>
       <div>
         <CardTitle>Description</CardTitle>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+        <p>{mediaFile.description}</p>
       </div>
       <div>
         <h3>Tags</h3>

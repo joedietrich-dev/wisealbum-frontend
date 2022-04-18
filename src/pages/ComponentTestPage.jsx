@@ -28,6 +28,8 @@ import Uploader from "../components/Uploader";
 import UploaderField from "../components/UploaderField";
 import PrimaryButton from "../components/PrimaryButton";
 import ButtonGroup from "../components/ButtonGroup";
+import CardContent from "../components/CardContent";
+import CardFooter from "../components/CardFooter";
 
 const HR = () => <hr style={{ margin: "32px" }} />;
 
@@ -98,7 +100,8 @@ const media = [
     id: 83,
     file_type: "image/png",
     url: "https://wisealbum-media.s3.amazonaws.com/albums/9/Annotation 2020-04-07 224141.png",
-    description: "",
+    description: "Photos taken yesterday and the day before when we ate chicken in the restaurant.",
+
     order: 1,
     is_blocked: false,
     is_published: true,
@@ -110,7 +113,8 @@ const media = [
     id: 84,
     file_type: "image/png",
     url: "https://wisealbum-media.s3.amazonaws.com/albums/9/Annotation 2020-04-14 222954.png",
-    description: "",
+    description: "This is shorter description text",
+
     order: 2,
     is_blocked: false,
     is_published: true,
@@ -122,7 +126,7 @@ const media = [
     id: 85,
     file_type: "image/png",
     url: "https://wisealbum-media.s3.amazonaws.com/albums/9/Annotation 2020-04-17 162957.png",
-    description: "",
+    description: "Photos taken yesterday and the day before when we ate chicken in the restaurant.",
     order: 3,
     is_blocked: false,
     is_published: true,
@@ -134,7 +138,8 @@ const media = [
     id: 86,
     file_type: "image/jpeg",
     url: "https://wisealbum-media.s3.amazonaws.com/albums/9/inspo_1904_p.jpg",
-    description: null,
+    description: "This is shorter description text",
+
     order: null,
     is_blocked: false,
     is_published: false,
@@ -161,7 +166,8 @@ const order = 9;
 const mediaExample = {
   album_id: 9,
   created_at: "2022-04-15T01:21:22.115Z",
-  description: "",
+  description: "This is shorter description text",
+
   file_type: "image/png",
   id: 84,
   is_blocked: false,
@@ -220,13 +226,17 @@ function ComponentTestPage() {
       <Subtitle>Dashboard</Subtitle>
       <Deck>
         <Card>
-          <CardTitle>Users</CardTitle>
-          <CardText>Total Users: {users.length}</CardText>
+          <CardContent>
+            <CardTitle>Users</CardTitle>
+            <CardText>Total Users: {users.length}</CardText>
+          </CardContent>
           <PrimaryButton>Edit Users</PrimaryButton>
         </Card>
         <Card>
-          <CardTitle>Albums</CardTitle>
-          <CardText>Total Albums: {users.length}</CardText>
+          <CardContent>
+            <CardTitle>Albums</CardTitle>
+            <CardText>Total Albums: {users.length}</CardText>
+          </CardContent>
           <PrimaryButton>Edit Albums</PrimaryButton>
         </Card>
       </Deck>
