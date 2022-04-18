@@ -1,7 +1,11 @@
 import { useEffect } from "react";
 import styled from "styled-components/macro";
 
-const StyledTitle = styled.h1``;
+const StyledTitle = styled.h1`
+  margin: 0;
+  margin-block-start: 24px;
+  margin-block-end: 12px;
+`;
 
 const Title = ({ children }) => {
   useEffect(() => {
