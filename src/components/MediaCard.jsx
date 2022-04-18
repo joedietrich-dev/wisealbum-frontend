@@ -17,7 +17,7 @@ const MediaCard = ({ mediaFile, onEditMediaClick, onDeleteMediaClick }) => {
         {mediaFile.file_type.match(/image\//) ? (
           <img src={mediaFile.url} alt={mediaFile.description} style={{ height: "100px", width: "auto" }} />
         ) : (
-          <img src="https://source.unsplash.com/100x100" />
+          <img src="https://source.unsplash.com/100x100" alt="placeholder media" />
         )}
       </div>
       <div>
