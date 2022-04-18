@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import AlbumCard from "../components/AlbumCard";
-import Button from "../components/Button";
 import Card from "../components/Card";
 import CardTitle from "../components/CardTitle";
 import Deck from "../components/Deck";
 import PageCard from "../components/PageCard";
+import PrimaryButton from "../components/PrimaryButton";
 import Subtitle from "../components/Subtitle";
 import Title from "../components/Title";
 import { useAuth } from "../helpers/AuthorizationProvider";
@@ -38,6 +38,7 @@ function AlbumsList() {
     <PageCard>
       <Title>Albums</Title>
       <Subtitle>View and edit your albums.</Subtitle>
+      <PrimaryButton onClick={() => navigate(`/organizations/${organizationId}/albums/create`)}>+ Add Album</PrimaryButton>
       <Deck>
         {albums?.map((album) => (
           <AlbumCard
@@ -51,7 +52,6 @@ function AlbumsList() {
         ))}
         <Card>
           <CardTitle>Add Album</CardTitle>
-          <Button onClick={() => navigate(`/organizations/${organizationId}/albums/create`)}>Add Album</Button>
         </Card>
       </Deck>
     </PageCard>
