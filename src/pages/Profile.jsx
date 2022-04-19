@@ -8,6 +8,7 @@ import { useState } from "react";
 import { Formik } from "formik";
 import Form from "../components/Form";
 import TextInput from "../components/TextInput";
+import PrimaryButton from "../components/PrimaryButton";
 
 function Profile() {
   const { user, loading } = useAuth();
@@ -38,7 +39,7 @@ function Profile() {
               <Form>
                 <Subtitle>Enter your email address to reset your password</Subtitle>
                 <TextInput label="Email Address" name="email" type="email" />
-                <button type="submit">Submit</button>
+                <PrimaryButton type="submit">Submit</PrimaryButton>
               </Form>
             </Formik>
           )}

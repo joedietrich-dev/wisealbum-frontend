@@ -1,9 +1,12 @@
+import styled from "styled-components/macro";
 import ButtonGroup from "./ButtonGroup";
-import CardContent from "./CardContent";
 import CardHorizontal from "./CardHorizontal";
+import CardHorizontalContent from "./CardHorizontalContent";
+import CardHorizontalImage from "./CardHorizontalImage";
 import CardTitle from "./CardTitle";
 import DeleteButton from "./DeleteButton";
 import PrimaryButton from "./PrimaryButton";
+import VisibilityIndicator from "./VisibilityIndicator";
 
 const MediaCard = ({ mediaFile, onEditMediaClick, onDeleteMediaClick }) => {
   const handleEditMediaClick = () => {
@@ -14,27 +17,21 @@ const MediaCard = ({ mediaFile, onEditMediaClick, onDeleteMediaClick }) => {
   };
   return (
     <CardHorizontal>
-      <div style={{ width: "100%" }}>
-        {mediaFile.file_type.match(/image\//) ? (
-          <img src={mediaFile.url} alt={mediaFile.description} style={{ height: "150px", width: "100%", objectFit: "cover" }} />
-        ) : (
-          <img src="https://source.unsplash.com/100x100" alt="placeholder media" />
-        )}
-      </div>
-      <div>
+      <CardHorizontalImage src={mediaFile.url} type={mediaFile.file_type} alt={mediaFile.description} />
+      <CardHorizontalContent>
         <CardTitle>Description</CardTitle>
         <p>{mediaFile.description}</p>
-      </div>
-      <div>
-        <h3>Tags</h3>
+      </CardHorizontalContent>
+      <CardHorizontalContent>
+        <CardTitle>Tags</CardTitle>
         <p>One, Two, Three</p>
-      </div>
-      <div>
-        <div>
-          <i>{!mediaFile.is_published || mediaFile.is_blocked ? "Not Visible" : "Visible"}</i>
-        </div>
-        <div>Order: {mediaFile.order}</div>
-      </div>
+      </CardHorizontalContent>
+      <CardHorizontalContent>
+        <CardFlex>
+          <VisibilityIndicator isVisible={mediaFile.is_published && !mediaFile.is_blocked} />
+          <p>Order: {mediaFile.order}</p>
+        </CardFlex>
+      </CardHorizontalContent>
       <ButtonGroup direction="column" justify="space-between">
         <PrimaryButton onClick={handleEditMediaClick}>Edit</PrimaryButton>
         <DeleteButton onDelete={handleDeleteMediaClick}>Delete</DeleteButton>
@@ -42,5 +39,16 @@ const MediaCard = ({ mediaFile, onEditMediaClick, onDeleteMediaClick }) => {
     </CardHorizontal>
   );
 };
+
+const CardFlex = styled.div`
+  display: flex;
+  align-items: center;
+  align-content: flex-start;
+  gap: 18px;
+
+  p {
+    margin: 0;
+  }
+`;
 
 export default MediaCard;

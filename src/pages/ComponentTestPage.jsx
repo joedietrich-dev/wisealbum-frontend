@@ -29,7 +29,6 @@ import UploaderField from "../components/UploaderField";
 import PrimaryButton from "../components/PrimaryButton";
 import ButtonGroup from "../components/ButtonGroup";
 import CardContent from "../components/CardContent";
-import CardFooter from "../components/CardFooter";
 
 const HR = () => <hr style={{ margin: "32px" }} />;
 
@@ -148,6 +147,18 @@ const media = [
     updated_at: "2022-04-16T17:01:58.146Z",
   },
   {
+    id: 88,
+    file_type: "video/mp4",
+    url: "https://wisealbum-media.s3.amazonaws.com/albums/test/2021-02-20_19-50-18.mp4",
+    description: "Now is the time for all good people",
+    order: 4,
+    is_blocked: false,
+    is_published: true,
+    album_id: 9,
+    created_at: "2022-04-16T17:02:06.232Z",
+    updated_at: "2022-04-16T17:02:06.232Z",
+  },
+  {
     id: 87,
     file_type: "image/jpeg",
     url: "https://wisealbum-media.s3.amazonaws.com/albums/9/mood_layers.jpg",
@@ -160,6 +171,7 @@ const media = [
     updated_at: "2022-04-16T17:02:06.232Z",
   },
 ];
+
 const mediaDescription = "Lorem ipsum dolor sit amet. Adleipsing edit marcono lapis. Enim ego ad usque monsteram ludetis.";
 const tags = "cheese, crackers, friendship";
 const order = 9;

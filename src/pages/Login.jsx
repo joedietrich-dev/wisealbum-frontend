@@ -7,6 +7,7 @@ import TextInput from "../components/TextInput";
 import Title from "../components/Title";
 import { useAuth } from "../helpers/AuthorizationProvider";
 import ErrorMessage from "./ErrorMessage";
+import PrimaryButton from "../components/PrimaryButton";
 
 function Login() {
   const { handleLogin } = useAuth();
@@ -38,7 +39,7 @@ function Login() {
         <Form>
           <TextInput label="Email Address" name="email" type="email" />
           <TextInput label="Password" name="password" type="password" />
-          <button type="submit">Submit</button>
+          <PrimaryButton type="submit">Submit</PrimaryButton>
         </Form>
       </Formik>
       {submitError ? <ErrorMessage>{submitError}</ErrorMessage> : null}

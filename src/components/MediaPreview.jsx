@@ -22,7 +22,7 @@ const VideoPreview = ({ media }) => {
   );
 };
 
-function MediaPreview({ media }) {
+function MediaPreview({ media = { url: "https://source.unsplash.com/100x100", description: "Placeholder Media", id: 0, file_type: "image" } }) {
   if (media.file_type.match(/image/)) {
     return <ImagePreview media={media} />;
   } else if (media.file_type.match(/video/)) {

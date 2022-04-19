@@ -14,7 +14,6 @@ function Layout({ children }) {
         <NavBar>
           <WordMark>WiseAlbum</WordMark>
           <NavLink to="/">Home</NavLink>
-          <NavLink to="/status">Status</NavLink>
           {user.id ? (
             <>
               <NavLink to="/dashboard">Dashboard</NavLink>
@@ -37,7 +36,11 @@ function Layout({ children }) {
         </NavBar>
       </NavHolder>
       {children}
-      <Footer>Footer</Footer>
+      <Footer>
+        <a href="https://github.com/joedietrich-dev">Github</a>
+        <WordMark>WiseAlbum</WordMark>
+        <a href="https://joedietrich.net">© 2022 Joe Dietrich</a>
+      </Footer>
     </div>
   );
 }

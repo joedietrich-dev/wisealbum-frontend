@@ -8,6 +8,7 @@ import Title from "../components/Title";
 import { post } from "../helpers/fetchers/post";
 import { signupValidation } from "../helpers/validationSchemas/signupValidation";
 import ErrorMessage from "./ErrorMessage";
+import PrimaryButton from "../components/PrimaryButton";
 
 function Signup() {
   const navigate = useNavigate();
@@ -45,7 +46,7 @@ function Signup() {
             <TextInput label="Email Address" name="email" type="email" />
             <TextInput label="Password" name="password" type="password" />
             <TextInput label="Password Confirmation" name="password_confirmation" type="password" />
-            <button type="submit">Submit</button>
+            <PrimaryButton type="submit">Submit</PrimaryButton>
           </Form>
         )}
       </Formik>

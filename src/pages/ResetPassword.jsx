@@ -7,6 +7,7 @@ import TextInput from "../components/TextInput";
 import Title from "../components/Title";
 import { put } from "../helpers/fetchers/put";
 import { resetPasswordValidation } from "../helpers/validationSchemas/resetPasswordValidation";
+import PrimaryButton from "../components/PrimaryButton";
 
 const ThankYouMessage = () => (
   <div>
@@ -49,7 +50,7 @@ function ResetPassword() {
             <Form>
               <TextInput label="Password" name="password" type="password" />
               <TextInput label="Password Confirmation" name="password_confirmation" type="password" />
-              <button type="submit">Submit</button>
+              <PrimaryButton type="submit">Submit</PrimaryButton>
             </Form>
           )}
         </Formik>

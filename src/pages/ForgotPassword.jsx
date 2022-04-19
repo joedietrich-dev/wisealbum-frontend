@@ -6,6 +6,7 @@ import ModalCard from "../components/ModalCard";
 import TextInput from "../components/TextInput";
 import Title from "../components/Title";
 import { post } from "../helpers/fetchers/post";
+import PrimaryButton from "../components/PrimaryButton";
 
 function ForgotPassword() {
   const navigate = useNavigate();
@@ -26,7 +27,7 @@ function ForgotPassword() {
         {() => (
           <Form>
             <TextInput label="Email Address" name="email" type="email" />
-            <button type="submit">Submit</button>
+            <PrimaryButton type="submit">Submit</PrimaryButton>
           </Form>
         )}
       </Formik>

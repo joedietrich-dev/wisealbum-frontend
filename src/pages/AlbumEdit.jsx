@@ -96,8 +96,8 @@ function AlbumEdit() {
               validationSchema={editAlbumValidation}
             >
               <Form>
-                <TextInput label="Album Name" name="name" />
                 <ToggleField label="Published" name="is_published" />
+                <TextInput label="Album Name" name="name" />
                 <TextAreaInput label="Album Description" name="description" />
                 <UploaderField filePath={`albums/${albumId}/cover/`} placeholderText="Upload a cover image" name="cover_image_path" />
                 <ButtonGroup justify="space-between">
