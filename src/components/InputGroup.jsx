@@ -34,6 +34,12 @@ const InputGroup = styled.div`
   textarea {
     height: calc(1.2rem * 1.55 * 4);
   }
+
+  & .error {
+    color: #d7263d;
+    position: relative;
+    top: 12px;
+  }
 `;
 
 export default InputGroup;

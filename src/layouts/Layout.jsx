@@ -25,7 +25,6 @@ function Layout({ children }) {
               ) : null}
               <NavLink to="/profile">My Profile</NavLink>
               <NavLink to="/logout">Logout</NavLink>
-              <NavLink to="/test">TestPage</NavLink>
             </>
           ) : (
             <>

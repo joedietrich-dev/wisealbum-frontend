@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { ROLE } from "../helpers/roles";
 import FormArea from "../components/FormArea";
 import PrimaryButton from "../components/PrimaryButton";
+import PageCard from "../components/PageCard";
 
 function OrganizationCreate() {
   const { user, setUser } = useAuth();
@@ -30,7 +31,7 @@ function OrganizationCreate() {
   };
 
   return (
-    <div>
+    <PageCard>
       <Title>Create Organization</Title>
       <Subtitle>Once you've set up your organization, you'll be able to add your teammates! </Subtitle>
       <FormArea>
@@ -47,7 +48,7 @@ function OrganizationCreate() {
           </Form>
         </Formik>
       </FormArea>
-    </div>
+    </PageCard>
   );
 }
 

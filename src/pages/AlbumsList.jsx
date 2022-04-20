@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import styled from "styled-components";
 import AlbumCard from "../components/AlbumCard";
 import Card from "../components/Card";
+import CardContent from "../components/CardContent";
 import CardTitle from "../components/CardTitle";
 import Deck from "../components/Deck";
 import PageCard from "../components/PageCard";
@@ -38,7 +40,6 @@ function AlbumsList() {
     <PageCard>
       <Title>Albums</Title>
       <Subtitle>View and edit your albums.</Subtitle>
-      <PrimaryButton onClick={() => navigate(`/organizations/${organizationId}/albums/create`)}>+ Add Album</PrimaryButton>
       <Deck>
         {albums?.map((album) => (
           <AlbumCard
@@ -51,11 +52,21 @@ function AlbumsList() {
           />
         ))}
         <Card>
-          <CardTitle>Add Album</CardTitle>
+          <CenteredCardContent>
+            <PrimaryButton onClick={() => navigate(`/organizations/${organizationId}/albums/create`)}>+ Add Album</PrimaryButton>
+          </CenteredCardContent>
         </Card>
       </Deck>
     </PageCard>
   );
 }
+
+const CenteredCardContent = styled.div`
+  padding: 64px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
 
 export default AlbumsList;
