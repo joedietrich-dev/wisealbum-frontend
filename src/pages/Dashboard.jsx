@@ -12,7 +12,7 @@ import CardContent from "../components/CardContent";
 
 function Dashboard({ user, organization }) {
   const navigate = useNavigate();
-  console.log(organization);
+
   return (
     <PageCard>
       <Title>Dashboard</Title>

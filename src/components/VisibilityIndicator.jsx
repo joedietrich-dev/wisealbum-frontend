@@ -3,7 +3,7 @@ import visible from "../eye-12109.svg";
 import hidden from "../hidden-12115.svg";
 
 const VisibilityIndicator = ({ isVisible = true }) => (isVisible ? <Icon url={visible} /> : <Icon url={hidden} />);
-console.log(visible);
+
 const Icon = ({ url }) => (
   <Wrapper>
     <Image src={url} alt={`Icon ${url}`} />

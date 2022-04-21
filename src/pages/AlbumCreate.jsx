@@ -17,7 +17,6 @@ function AlbumCreate() {
   const { user, loading } = useAuth();
   const navigate = useNavigate();
   const { organizationId } = useParams();
-  console.log(loading);
 
   useEffect(() => {
     if (!loading) {

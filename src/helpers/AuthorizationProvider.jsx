@@ -38,6 +38,7 @@ function AuthorizationProvider({ children }) {
       setLoading(false);
       return successCallback();
     } catch (err) {
+      setLoading(false);
       return errorCallback(err);
     }
   };
@@ -95,7 +96,10 @@ function AuthorizationProvider({ children }) {
         });
         setLoading(false);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        setLoading(false);
+      });
   }, [token]);
 
   useEffect(() => {
@@ -109,6 +113,7 @@ function AuthorizationProvider({ children }) {
         organization_id: undefined,
         token: undefined,
       });
+      setLoading(false);
     }
   }, [token, handlePersistUser]);
 

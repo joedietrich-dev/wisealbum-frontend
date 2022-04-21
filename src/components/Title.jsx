@@ -14,7 +14,6 @@ const Title = ({ children }) => {
     } else if (Array.isArray(children)) {
       document.title = children.filter((child) => typeof child === "string").reduce((acc, curr) => acc + curr, "WiseAlbum - ");
     } else {
-      console.log(children);
       document.title = "WiseAlbum";
     }
     return () => {
