@@ -9,7 +9,7 @@ import CardTitle from "./CardTitle";
 import PrimaryButton from "./PrimaryButton";
 import SecondaryButton from "./SecondaryButton";
 
-function AlbumCard({ id, coverImage = "", description = "", name = "", onEditAlbum = (f) => f }) {
+function AlbumCard({ id, coverImage = "", description = "", name = "", onViewAlbum = (f) => f, onEditAlbum = (f) => f, isEditable = false }) {
   return (
     <Card>
       <CardImage src={coverImage} alt={name} />
@@ -18,10 +18,16 @@ function AlbumCard({ id, coverImage = "", description = "", name = "", onEditAlb
         <CardText>{description}</CardText>
       </CardContent>
       <CardFooter>
-        <ButtonGroup>
-          <SecondaryButton>View Album</SecondaryButton>
-          <PrimaryButton onClick={() => onEditAlbum(id)}>Edit Album</PrimaryButton>
-        </ButtonGroup>
+        {isEditable ? (
+          <ButtonGroup>
+            <SecondaryButton onClick={() => onViewAlbum(id)}>View Album</SecondaryButton>
+            <PrimaryButton onClick={() => onEditAlbum(id)}>Edit Album</PrimaryButton>
+          </ButtonGroup>
+        ) : (
+          <ButtonGroup>
+            <PrimaryButton onClick={() => onViewAlbum(id)}>View Album</PrimaryButton>
+          </ButtonGroup>
+        )}
       </CardFooter>
     </Card>
   );

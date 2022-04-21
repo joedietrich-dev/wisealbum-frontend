@@ -19,12 +19,9 @@ function AlbumsList() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!loading) {
+    if (!loading && user) {
       // If the user is not a Super Admin or Org Owner who has no Org ID
-      if (
-        user &&
-        (ROLE.isSuperAdmin(user) || ((ROLE.isOrgOwner(user) || ROLE.isContributor(user)) && user.organization_id === parseInt(organizationId, 10)))
-      ) {
+      if (ROLE.isSuperAdmin(user) || ((ROLE.isOrgOwner(user) || ROLE.isContributor(user)) && user.organization_id === parseInt(organizationId, 10))) {
         authorizedGet(`/organizations/${organizationId}/albums`).then((json) => setAlbums(json));
         console.log("Welcome");
       } else {
@@ -35,6 +32,9 @@ function AlbumsList() {
 
   const handleEditAlbum = (albumId) => {
     navigate(`/organizations/${organizationId}/albums/${albumId}/edit`);
+  };
+  const handleViewAlbum = (albumId) => {
+    navigate(`/organizations/${organizationId}/albums/${albumId}/view`);
   };
 
   return (
@@ -48,24 +48,22 @@ function AlbumsList() {
             coverImage={album.cover_image_path}
             description={album.description}
             name={album.name}
+            onViewAlbum={handleViewAlbum}
             onEditAlbum={handleEditAlbum}
             id={album.id}
+            isEditable
           />
         ))}
-        <Card>
-          <CenteredCardContent>
-            <PrimaryButton onClick={() => navigate(`/organizations/${organizationId}/albums/create`)}>+ Add Album</PrimaryButton>
-          </CenteredCardContent>
-        </Card>
+        <ButtonCard>
+          <PrimaryButton onClick={() => navigate(`/organizations/${organizationId}/albums/create`)}>+ Add Album</PrimaryButton>
+        </ButtonCard>
       </Deck>
     </PageCard>
   );
 }
 
-const CenteredCardContent = styled.div`
-  padding: 64px;
+const ButtonCard = styled(Card)`
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
 `;

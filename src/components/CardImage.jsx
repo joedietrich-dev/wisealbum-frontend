@@ -1,10 +1,9 @@
 import styled from "styled-components/macro";
+import videoImage from "../video-818.png";
 
-const CardImage = ({ src, alt }) => {
+const CardImage = ({ src, alt, type = "image" }) => {
   return (
-    <Wrapper>
-      <Image src={src} alt={alt}></Image>
-    </Wrapper>
+    <Wrapper>{type.match(/image/) ? <Image src={src} alt={alt || "Image Media"} /> : <Image src={videoImage} alt={alt || "Video Media"} />}</Wrapper>
   );
 };
 

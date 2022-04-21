@@ -264,6 +264,7 @@ function ComponentTestPage() {
             name={album.name}
             onEditAlbum={(f) => f}
             id={album.id}
+            isEditable
           />
         ))}
       </Deck>

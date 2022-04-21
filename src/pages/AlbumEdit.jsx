@@ -77,7 +77,6 @@ function AlbumEdit() {
       .catch(console.error);
   };
 
-  if (media) console.log(media);
   return (
     <PageCard>
       {loading || isAlbumLoading ? null : (

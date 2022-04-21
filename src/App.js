@@ -22,6 +22,9 @@ import ForgotPassword from "./pages/ForgotPassword";
 import ForgotPasswordSent from "./pages/ForgotPasswordSent";
 import ResetPassword from "./pages/ResetPassword";
 import ComponentTestPage from "./pages/ComponentTestPage";
+import AlbumsListView from "./pages/AlbumsListView";
+import AlbumView from "./pages/AlbumView";
+import MediaView from "./pages/MediaView";
 
 function App() {
   return (
@@ -46,9 +49,12 @@ function App() {
             <Route path="/organizations/:organizationId/dashboard" element={<AdminCompanyDashboard />} />
             <Route path="/organizations/:organizationId/edit" element={<OrganizationEdit />} />
             <Route path="/organizations/:organizationId/albums" element={<AlbumsList />} />
+            <Route path="/organizations/:organizationId/albums/view" element={<AlbumsListView />} />
             <Route path="/organizations/:organizationId/albums/create" element={<AlbumCreate />} />
             <Route path="/organizations/:organizationId/albums/:albumId/edit" element={<AlbumEdit />} />
+            <Route path="/organizations/:organizationId/albums/:albumId/view" element={<AlbumView />} />
             <Route path="/organizations/:organizationId/albums/:albumId/:mediaId/edit" element={<MediaEdit />} />
+            <Route path="/organizations/:organizationId/albums/:albumId/:mediaId/view" element={<MediaView />} />
             <Route path="/forbidden" element={<Forbidden />} />
           </Routes>
         </Layout>
