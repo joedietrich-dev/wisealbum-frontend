@@ -14,7 +14,7 @@ const Image = styled.img`
 `;
 const Wrapper = styled.div`
   width: 100%;
-  background-color: #3d7068;
+  background-color: #02182b;
 `;
 
 export default CardHorizontalImage;

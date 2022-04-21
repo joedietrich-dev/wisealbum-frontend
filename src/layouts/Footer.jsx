@@ -6,7 +6,7 @@ const Footer = ({ children }) => (
   </FooterHolder>
 );
 const FooterHolder = styled.div`
-  background-color: #3d7068;
+  background-color: #02182b;
   color: #ffffff;
   margin-top: 48px;
 `;

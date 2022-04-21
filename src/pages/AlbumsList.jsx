@@ -3,8 +3,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import AlbumCard from "../components/AlbumCard";
 import Card from "../components/Card";
-import CardContent from "../components/CardContent";
-import CardTitle from "../components/CardTitle";
 import Deck from "../components/Deck";
 import PageCard from "../components/PageCard";
 import PrimaryButton from "../components/PrimaryButton";

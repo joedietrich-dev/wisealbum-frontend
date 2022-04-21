@@ -2,7 +2,8 @@ import styled from "styled-components/macro";
 
 const NavHolder = styled.div`
   z-index: 1000;
-  background-color: #3d7068;
+  /* background-color: #3d7068; */
+  background-color: #02182b;
   color: #ffffff;
   --shadow-color: 0deg 0% 54%;
   box-shadow: 0.3px 0.5px 0.5px hsl(var(--shadow-color) / 0.68), 0.7px 1.3px 1.4px -1.2px hsl(var(--shadow-color) / 0.57),
