@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import MediaPreview from "../components/MediaPreview";
 import PageCard from "../components/PageCard";
-import Subtitle from "../components/Subtitle";
 import Title from "../components/Title";
 import { authorizedGet } from "../helpers/fetchers/get";
 import PrimaryButton from "../components/PrimaryButton";
