@@ -45,20 +45,25 @@ async function uploadDirectly(
   }
 }
 
-function Uploader({ placeholderText = "Drag 'n' drop some files here, or click to select files", filePath = "", onUpload = (f) => f }) {
+function Uploader({
+  maxFiles = 0,
+  placeholderText = "Drag 'n' drop some files here, or click to select files",
+  filePath = "",
+  onUpload = (f) => f,
+  acceptedTypes = ["image/*", "video/mp4"],
+}) {
   const [fileStatuses, setFileStatuses] = useState([]);
 
   const onDrop = useCallback(
     (files) => {
-      setFileStatuses((fileStatuses) => fileStatuses.filter((fileStatus) => fileStatus.status === "complete"));
       files.forEach((file) => {
         uploadDirectly(file, filePath, setFileStatuses, onUpload);
       });
     },
     [filePath, onUpload]
   );
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
+  const { getRootProps, getInputProps, fileRejections, isDragActive } = useDropzone({ onDrop, accept: acceptedTypes, maxFiles, maxSize: 10000000 });
   return (
     <>
       <UploadArea {...getRootProps()}>
@@ -70,6 +75,20 @@ function Uploader({ placeholderText = "Drag 'n' drop some files here, or click t
             <div>{fileStatus.fileName}</div> <div>{fileStatus.status}</div>
           </FileStatusContainer>
         ))}
+        {fileRejections
+          ? fileRejections.map((rejections) => (
+              <FileStatusContainer key={rejections.file.path}>
+                <div>{rejections.file.path}</div>{" "}
+                <div>
+                  {rejections.errors[0].message === "Too many files"
+                    ? `Please select only ${maxFiles} file(s)`
+                    : rejections.errors[0].message.includes("File is larger")
+                    ? "File is too large"
+                    : rejections.errors[0].message}
+                </div>
+              </FileStatusContainer>
+            ))
+          : null}
       </UploadArea>
     </>
   );

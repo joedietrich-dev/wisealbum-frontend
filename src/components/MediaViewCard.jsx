@@ -21,7 +21,7 @@ const MediaViewCard = ({ mediaFile, onViewMediaClick = (f) => f }) => {
         {mediaFile.tags ? (
           <IconFlex>
             <Icon url={tagIcon} />
-            <p>One, Two, Three</p>
+            <p>{mediaFile.tags}</p>
           </IconFlex>
         ) : null}
       </CardContent>

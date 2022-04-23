@@ -98,7 +98,7 @@ function AlbumEdit() {
                 <ToggleField label="Published" name="is_published" />
                 <TextInput label="Album Name" name="name" />
                 <TextAreaInput label="Album Description" name="description" />
-                <UploaderField filePath={`albums/${albumId}/cover/`} placeholderText="Upload a cover image" name="cover_image_path" />
+                <UploaderField filePath={`albums/${albumId}/cover/`} placeholderText="Upload a cover image" name="cover_image_path" maxFiles={1} />
                 <ButtonGroup justify="space-between">
                   <DeleteButton type="button" onDelete={handleDeleteAlbumClick}>
                     Delete Album

@@ -24,7 +24,7 @@ const MediaCard = ({ mediaFile, onEditMediaClick, onDeleteMediaClick }) => {
       </CardHorizontalContent>
       <CardHorizontalContent>
         <CardTitle>Tags</CardTitle>
-        <p>One, Two, Three</p>
+        <p>{mediaFile.tags}</p>
       </CardHorizontalContent>
       <CardHorizontalContent>
         <CardFlex>

@@ -34,7 +34,7 @@ function MediaView() {
           {media.tags?.length ? (
             <IconFlex>
               <Icon url={tagIcon} />
-              <p>One, Two, Three</p>
+              <p>{media.tags}</p>
             </IconFlex>
           ) : null}
         </>
