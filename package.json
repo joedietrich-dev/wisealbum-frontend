@@ -17,8 +17,8 @@
     "yup": "^0.32.11"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "REACT_APP_QUERY_DOMAIN=http://localhost:3001 react-scripts start",
+    "build": "REACT_APP_QUERY_DOMAIN=https://wisealbum.herokuapp.com react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
