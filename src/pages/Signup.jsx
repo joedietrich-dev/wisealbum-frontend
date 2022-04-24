@@ -35,7 +35,7 @@ function Signup() {
               if (err.message.includes("Email has already been taken")) {
                 setSubmitError("Email has been taken, please select another one.");
               } else {
-                console.log(err.message);
+                console.error(err.message);
               }
             });
         }}

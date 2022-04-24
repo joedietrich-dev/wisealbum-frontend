@@ -15,7 +15,7 @@ function AlbumsListView() {
   useEffect(() => {
     get(`/organizations/${organizationId}`).then((json) => {
       setOrganization(json);
-      console.log(json);
+      // console.log(json);
     });
   }, [organizationId]);
 

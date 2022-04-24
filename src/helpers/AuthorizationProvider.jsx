@@ -85,7 +85,7 @@ function AuthorizationProvider({ children }) {
         }
       })
       .then((json) => {
-        console.log(json);
+        // console.log(json);
         const { id, full_name, role_id, organization_id } = json;
         setUser({
           id,
@@ -97,7 +97,7 @@ function AuthorizationProvider({ children }) {
         setLoading(false);
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
         setLoading(false);
       });
   }, [token]);

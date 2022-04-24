@@ -23,7 +23,7 @@ function AlbumsList() {
       // If the user is not a Super Admin or Org Owner who has no Org ID
       if (ROLE.isSuperAdmin(user) || ((ROLE.isOrgOwner(user) || ROLE.isContributor(user)) && user.organization_id === parseInt(organizationId, 10))) {
         authorizedGet(`/organizations/${organizationId}/albums`).then((json) => setAlbums(json));
-        console.log("Welcome");
+        // console.log("Welcome");
       } else {
         navigate("/dashboard");
       }

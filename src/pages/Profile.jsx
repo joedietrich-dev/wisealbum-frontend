@@ -14,7 +14,7 @@ function Profile() {
   const { user, loading } = useAuth();
   const [isResetSent, setIsResetSent] = useState(false);
   const handleSubmit = (data) => {
-    console.log(data, user);
+    // console.log(data, user);
     post("/password", data);
     setIsResetSent(true);
   };

@@ -19,7 +19,7 @@ export const get = (url) =>
 export const noResponseGet = (url) =>
   fetch(`${process.env.REACT_APP_QUERY_DOMAIN}${url}`, options).then((res) => {
     if (res.ok) {
-      console.log(res);
+      // console.log(res);
     } else {
       throw new Error(res);
     }
