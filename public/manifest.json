@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "WiseAlbum",
+  "name": "Wisealbum Gallery Creator",
   "icons": [
     {
       "src": "favicon.ico",
