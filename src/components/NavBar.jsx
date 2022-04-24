@@ -1,4 +1,11 @@
 import styled from "styled-components/macro";
+import NavHolder from "./NavHolder";
+
+const NavBar = ({ children }) => (
+  <NavHolder>
+    <StyledNavigation>{children}</StyledNavigation>
+  </NavHolder>
+);
 
 const StyledNavigation = styled.nav`
   width: 90%;
@@ -7,7 +14,7 @@ const StyledNavigation = styled.nav`
   margin: 0 auto;
   display: flex;
   align-items: baseline;
-  justify-content: end;
+  justify-content: space-between;
   gap: 24px;
 
   a {
@@ -31,6 +38,10 @@ const StyledNavigation = styled.nav`
       text-decoration: underline;
     }
   }
+  /* 
+  @media (max-width: 920px) {
+    flex-direction: column;
+  } */
 `;
 
-export default StyledNavigation;
+export default NavBar;

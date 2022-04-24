@@ -1,5 +1,5 @@
 import styled from "styled-components/macro";
-import WordMark from "../components/WordMark";
+import WordMark from "./WordMark";
 const Footer = ({ children }) => (
   <FooterHolder>
     <FooterContent>{children}</FooterContent>
@@ -39,10 +39,6 @@ const FooterContent = styled.footer`
       font-style: italic;
       text-decoration: underline;
     }
-  }
-
-  & > ${WordMark} {
-    margin: 0;
   }
 `;
 
