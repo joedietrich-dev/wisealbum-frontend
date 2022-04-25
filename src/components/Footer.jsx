@@ -1,5 +1,4 @@
 import styled from "styled-components/macro";
-import WordMark from "./WordMark";
 const Footer = ({ children }) => (
   <FooterHolder>
     <FooterContent>{children}</FooterContent>

@@ -38,10 +38,6 @@ const StyledNavigation = styled.nav`
       text-decoration: underline;
     }
   }
-  /* 
-  @media (max-width: 920px) {
-    flex-direction: column;
-  } */
 `;
 
 export default NavBar;

@@ -8,13 +8,14 @@ const CardHorizontalImage = ({ src, alt, type = "image" }) => {
 };
 
 const Image = styled.img`
-  height: 150px;
+  height: 100%;
   width: 100%;
   object-fit: cover;
 `;
 const Wrapper = styled.div`
   width: 100%;
   background-color: #02182b;
+  grid-area: "image";
 `;
 
 export default CardHorizontalImage;

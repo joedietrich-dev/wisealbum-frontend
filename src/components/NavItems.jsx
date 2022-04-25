@@ -12,11 +12,16 @@ const NavItems = styled.div`
     align-items: flex-end;
     justify-content: flex-start;
     margin-top: 24px;
+    transition: all 250ms;
+    transform-origin: top left;
 
     &.collapsed {
       transform: scaleY(0);
       height: 0;
       margin: 0;
+      a {
+        color: transparent !important;
+      }
     }
   }
 `;

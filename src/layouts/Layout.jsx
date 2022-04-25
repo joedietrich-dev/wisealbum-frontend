@@ -44,7 +44,6 @@ function Layout({ children }) {
       {children}
       <Footer>
         <a href="https://github.com/joedietrich-dev">Github</a>
-        <WordMark>WiseAlbum</WordMark>
         <a href="https://joedietrich.net">© 2022 Joe Dietrich</a>
       </Footer>
     </div>

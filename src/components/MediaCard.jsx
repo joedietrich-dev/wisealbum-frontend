@@ -18,15 +18,15 @@ const MediaCard = ({ mediaFile, onEditMediaClick, onDeleteMediaClick }) => {
   return (
     <CardHorizontal>
       <CardHorizontalImage src={mediaFile.url} type={mediaFile.file_type} alt={mediaFile.description} />
-      <CardHorizontalContent>
+      <CardHorizontalContent gridArea="description">
         <CardTitle>Description</CardTitle>
         <p>{mediaFile.description}</p>
       </CardHorizontalContent>
-      <CardHorizontalContent>
+      <CardHorizontalContent gridArea="tags">
         <CardTitle>Tags</CardTitle>
         <p>{mediaFile.tags}</p>
       </CardHorizontalContent>
-      <CardHorizontalContent>
+      <CardHorizontalContent gridArea="meta">
         <CardFlex>
           <VisibilityIndicator isVisible={mediaFile.is_published && !mediaFile.is_blocked} />
           <p>Order: {mediaFile.order}</p>
