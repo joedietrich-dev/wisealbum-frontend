@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { useAuth } from "../helpers/AuthorizationProvider";
 import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";
@@ -6,12 +6,18 @@ import { ROLE } from "../helpers/roles";
 import WordMark from "../components/WordMark";
 import NavItems from "../components/NavItems";
 import NavToggle from "../components/NavToggle";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Menu from "../components/Menu";
 
 function Layout({ children }) {
   const { user } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [location]);
+
   return (
     <div>
       <NavBar>

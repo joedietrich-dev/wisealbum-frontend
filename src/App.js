@@ -33,7 +33,7 @@ function App() {
         <Layout>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/test" element={<ComponentTestPage />} />
+            {/* <Route path="/test" element={<ComponentTestPage />} /> */}
             <Route path="/login" element={<Login />} />
             <Route path="/forgot_password" element={<ForgotPassword />} />
             <Route path="/forgot_password/verification_sent" element={<ForgotPasswordSent />} />
