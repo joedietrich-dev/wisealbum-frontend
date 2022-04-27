@@ -21,10 +21,11 @@ import SignupVerificationSent from "./pages/SignupVerificationSent";
 import ForgotPassword from "./pages/ForgotPassword";
 import ForgotPasswordSent from "./pages/ForgotPasswordSent";
 import ResetPassword from "./pages/ResetPassword";
-import ComponentTestPage from "./pages/ComponentTestPage";
+// import ComponentTestPage from "./pages/ComponentTestPage";
 import AlbumsListView from "./pages/AlbumsListView";
 import AlbumView from "./pages/AlbumView";
 import MediaView from "./pages/MediaView";
+import AcceptInvitation from "./pages/AcceptInvitation";
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
             <Route path="/forgot_password" element={<ForgotPassword />} />
             <Route path="/forgot_password/verification_sent" element={<ForgotPasswordSent />} />
             <Route path="/reset_password/:verificationToken" element={<ResetPassword />} />
+            <Route path="/accept_invitation/:invitationToken" element={<AcceptInvitation />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/signup/verification_sent" element={<SignupVerificationSent />} />
             <Route path="/verify/:verificationToken" element={<Verify />} />

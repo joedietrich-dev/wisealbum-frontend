@@ -1,6 +1,7 @@
+import { Form as FormikForm } from "formik";
 import styled from "styled-components/macro";
 
-const HorizontalForm = styled.form`
+const HorizontalForm = styled(FormikForm)`
   width: 100%;
   display: flex;
   flex-direction: row;

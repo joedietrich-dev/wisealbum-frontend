@@ -56,8 +56,9 @@ function OrganizationEdit() {
       })
       .catch((err) => console.error(err));
   };
-  const handleInvitationFormSubmit = (values) => {
+  const handleInvitationFormSubmit = (values, actions) => {
     setIsInviteSending(true);
+    setInviteError("");
     authorizedPost(`/invitation`, {
       user: {
         ...values,
@@ -65,18 +66,21 @@ function OrganizationEdit() {
         role_id: 3,
       },
     })
-      .then((res) => {
-        return res.json();
-      })
       .then((json) => {
-        console.log(json);
+        if (json.status.code === 200) {
+          const invitedUser = json.data;
+          setOrg((previous) => {
+            const newUsers = [...previous.users.filter((user) => user.id !== invitedUser.id), invitedUser];
+            return { ...previous, users: newUsers };
+          });
+          actions.resetForm({
+            full_name: "",
+            email: "",
+          });
+        }
       })
       .catch((err) => {
-        if (err.message.includes("Email has already been taken")) {
-          setInviteError(err.message);
-        } else {
-          console.error(err.message);
-        }
+        setInviteError(err.message);
       })
       .finally(() => setIsInviteSending(false));
   };
