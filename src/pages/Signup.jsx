@@ -40,18 +40,18 @@ function Signup() {
             });
         }}
       >
-        {() => (
-          <Form>
-            <TextInput label="Full Name" name="full_name" />
-            <TextInput label="Email Address" name="email" type="email" />
-            <TextInput label="Password" name="password" type="password" />
-            <TextInput label="Password Confirmation" name="password_confirmation" type="password" />
-            <PrimaryButton type="submit">Submit</PrimaryButton>
-          </Form>
-        )}
+        <Form>
+          <TextInput label="Full Name" name="full_name" />
+          <TextInput label="Email Address" name="email" type="email" />
+          <TextInput label="Password" name="password" type="password" />
+          <TextInput label="Password Confirmation" name="password_confirmation" type="password" />
+          <PrimaryButton type="submit">Submit</PrimaryButton>
+        </Form>
       </Formik>
       {submitError ? <ErrorMessage>{submitError}</ErrorMessage> : null}
-      <Link to="/login">I already have an account</Link>
+      <p>
+        <Link to="/login">I already have an account</Link>
+      </p>
     </ModalCard>
   );
 }

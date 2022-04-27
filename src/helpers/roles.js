@@ -5,6 +5,13 @@ const ROLES = {
   VIEWER: 4,
 };
 
+const ROLE_IDS = {
+  1: "Super Admin",
+  2: "Organization Owner",
+  3: "Contributor",
+  4: "Viewer",
+};
+
 const isSuperAdmin = (user = { role_id: undefined }) => {
   return user.role_id === ROLES.SUPER_ADMIN;
 };
@@ -23,4 +30,4 @@ const isViewer = (user = { role_id: undefined }) => {
 
 const ROLE = { isSuperAdmin, isOrgOwner, isContributor, isViewer };
 
-export { ROLE };
+export { ROLE, ROLE_IDS };

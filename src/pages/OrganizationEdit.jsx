@@ -4,8 +4,7 @@ import { useAuth } from "../helpers/AuthorizationProvider";
 import { authorizedGet } from "../helpers/fetchers/get";
 import Title from "../components/Title";
 import SectionTitle from "../components/SectionTitle";
-
-import { ROLE } from "../helpers/roles";
+import { ROLE, ROLE_IDS } from "../helpers/roles";
 import Subtitle from "../components/Subtitle";
 import PageCard from "../components/PageCard";
 import { Formik } from "formik";
@@ -23,13 +22,18 @@ import TableHeader from "../components/TableHeader";
 import TableBody from "../components/TableBody";
 import TableData from "../components/TableData";
 import PrimaryButton from "../components/PrimaryButton";
+import { inviteValidation } from "../helpers/validationSchemas/inviteValidation";
+import { authorizedPost } from "../helpers/fetchers/post";
+import HorizontalForm from "../components/HorizontalForm";
+import ErrorMessage from "./ErrorMessage";
 
 function OrganizationEdit() {
   const { organizationId } = useParams();
   const { user, loading } = useAuth();
   const navigate = useNavigate();
-  const [isOrgLoading, setIsOrgLoading] = useState(true);
   const [org, setOrg] = useState();
+  const [isInviteSending, setIsInviteSending] = useState(false);
+  const [inviteError, setInviteError] = useState("");
 
   useEffect(() => {
     if (!loading) {
@@ -37,7 +41,6 @@ function OrganizationEdit() {
         authorizedGet(`/organizations/${organizationId}`)
           .then((json) => {
             setOrg(json);
-            setIsOrgLoading(false);
           })
           .catch((err) => console.error(err));
       } else {
@@ -46,17 +49,41 @@ function OrganizationEdit() {
     }
   }, [user, loading, organizationId, navigate]);
 
-  const handleSubmit = (values) => {
+  const handleOrganizationEditSubmit = (values) => {
     authorizedPatch(`/organizations/${organizationId}`, values)
       .then((json) => {
         setOrg(json);
       })
       .catch((err) => console.error(err));
   };
+  const handleInvitationFormSubmit = (values) => {
+    setIsInviteSending(true);
+    authorizedPost(`/invitation`, {
+      user: {
+        ...values,
+        organization_id: organizationId,
+        role_id: 3,
+      },
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((json) => {
+        console.log(json);
+      })
+      .catch((err) => {
+        if (err.message.includes("Email has already been taken")) {
+          setInviteError(err.message);
+        } else {
+          console.error(err.message);
+        }
+      })
+      .finally(() => setIsInviteSending(false));
+  };
 
   return (
     <PageCard>
-      {loading || isOrgLoading ? null : (
+      {loading || !org ? null : (
         <>
           <Title>Edit {org.name}</Title>
           <Subtitle>Add your teammates and edit your organization details here.</Subtitle>
@@ -66,7 +93,7 @@ function OrganizationEdit() {
                 name: org.name,
                 logo_url: org.logo_url,
               }}
-              onSubmit={handleSubmit}
+              onSubmit={handleOrganizationEditSubmit}
               validationSchema={editOrganizationValidation}
             >
               <Form>
@@ -80,7 +107,23 @@ function OrganizationEdit() {
           </FormArea>
           <SectionTitle>Collaborators</SectionTitle>
           <Subtitle>Invite Teammates</Subtitle>
-          <p>TODO: Invitation Form</p>
+          <Formik
+            initialValues={{
+              full_name: "",
+              email: "",
+            }}
+            validationSchema={inviteValidation}
+            onSubmit={handleInvitationFormSubmit}
+          >
+            <HorizontalForm>
+              <TextInput label="Full Name" name="full_name" />
+              <TextInput label="Email Address" name="email" type="email" />
+              <PrimaryButton type="submit" disabled={isInviteSending}>
+                Invite
+              </PrimaryButton>
+            </HorizontalForm>
+          </Formik>
+          {inviteError ? <ErrorMessage>{inviteError}</ErrorMessage> : null}
           <Table>
             <TableHead>
               <TableRow>
@@ -94,7 +137,7 @@ function OrganizationEdit() {
                 <TableRow key={user.id}>
                   <TableData>{user.full_name}</TableData>
                   <TableData>{user.email}</TableData>
-                  <TableData>{user.role_id}</TableData>
+                  <TableData>{ROLE_IDS[user.role_id]}</TableData>
                 </TableRow>
               ))}
             </TableBody>

@@ -46,13 +46,11 @@ function ResetPassword() {
           validationSchema={resetPasswordValidation}
           onSubmit={handleSubmit}
         >
-          {() => (
-            <Form>
-              <TextInput label="Password" name="password" type="password" />
-              <TextInput label="Password Confirmation" name="password_confirmation" type="password" />
-              <PrimaryButton type="submit">Submit</PrimaryButton>
-            </Form>
-          )}
+          <Form>
+            <TextInput label="Password" name="password" type="password" />
+            <TextInput label="Password Confirmation" name="password_confirmation" type="password" />
+            <PrimaryButton type="submit">Submit</PrimaryButton>
+          </Form>
         </Formik>
       )}
     </ModalCard>
